@@ -1,1 +1,4 @@
 # HabitBot
+HabitBot is an iOS application that acts as an habit tracker that helps users achieve their personal habit goals through an easy-to-use tracking system, and motivates them with customisable reminder notifications, insightful summaries and streaks data, and daily motivational quotes. Unlike most habit tracking applications available, it integrates with Apple Health to allow users to automatically track a wider variety of tasks.
+
+Forming habits is difficult and will remain difficult if users are required to create new habits around regularly logging their habit progress. HabitBot is designed so that habits that can be tracked using external data, such as Apple Health, will automatically update the user's progress, and users can update their task progress without needing to open the application through actionable reminder push notifications. This way, users can spend less time on their device and spend more time working towards their habit goals.
