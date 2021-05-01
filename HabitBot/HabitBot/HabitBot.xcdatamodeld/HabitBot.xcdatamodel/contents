@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="true" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Habit" representedClassName="Habit" syncable="YES">
+        <attribute name="colour" attributeType="String" defaultValueString="RedColour"/>
+        <attribute name="freqDescription" attributeType="String" defaultValueString="Times"/>
+        <attribute name="frequency" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="frequencyDuration" attributeType="String" defaultValueString="daily"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="startDate" attributeType="Date" defaultDateTimeInterval="-978343200" usesScalarValueType="NO"/>
+        <attribute name="type" attributeType="String" defaultValueString="custom"/>
+        <relationship name="habitData" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HabitData" inverseName="habit" inverseEntity="HabitData"/>
+        <relationship name="reminder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reminder" inverseName="habit" inverseEntity="Reminder"/>
+    </entity>
+    <entity name="HabitData" representedClassName="HabitData" syncable="YES">
+        <attribute name="count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="date" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HabitDate" inverseName="habits" inverseEntity="HabitDate"/>
+        <relationship name="habit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="habitData" inverseEntity="Habit"/>
+    </entity>
+    <entity name="HabitDate" representedClassName="HabitDate" syncable="YES">
+        <attribute name="date" attributeType="Date" defaultDateTimeInterval="-978343200" usesScalarValueType="NO"/>
+        <relationship name="habits" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HabitData" inverseName="date" inverseEntity="HabitData"/>
+    </entity>
+    <entity name="Reminder" representedClassName="Reminder" syncable="YES">
+        <attribute name="completeMsg" attributeType="String" defaultValueString=""/>
+        <attribute name="count" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="frequency" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="incompleteMsg" attributeType="String" defaultValueString=""/>
+        <attribute name="msgDescription" attributeType="String" defaultValueString=""/>
+        <attribute name="startTime" attributeType="Date" defaultDateTimeInterval="-978343200" usesScalarValueType="NO"/>
+        <relationship name="habit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habit" inverseName="reminder" inverseEntity="Habit"/>
+    </entity>
+    <elements>
+        <element name="Habit" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="HabitDate" positionX="-54" positionY="36" width="128" height="59"/>
+        <element name="HabitData" positionX="-36" positionY="45" width="128" height="74"/>
+        <element name="Reminder" positionX="-18" positionY="72" width="128" height="134"/>
+    </elements>
 </model>

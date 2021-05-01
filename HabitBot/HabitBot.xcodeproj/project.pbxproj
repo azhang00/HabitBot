@@ -10,6 +10,19 @@
 		953F2274263243AE00BA378E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F2273263243AE00BA378E /* SettingsViewController.swift */; };
 		953F2277263243CA00BA378E /* AddOrEditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F2276263243CA00BA378E /* AddOrEditHabitViewController.swift */; };
 		953F227A2632442100BA378E /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F22792632442100BA378E /* SummaryViewController.swift */; };
+		9586518F263D03040004759F /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9586518E263D03040004759F /* MulticastDelegate.swift */; };
+		958651C2263D06E80004759F /* DatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651C1263D06E80004759F /* DatabaseProtocol.swift */; };
+		958651DF263D09A40004759F /* HabitData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651D7263D09A40004759F /* HabitData+CoreDataClass.swift */; };
+		958651E0263D09A40004759F /* HabitData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651D8263D09A40004759F /* HabitData+CoreDataProperties.swift */; };
+		958651E1263D09A40004759F /* Reminder+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651D9263D09A40004759F /* Reminder+CoreDataClass.swift */; };
+		958651E2263D09A40004759F /* Reminder+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651DA263D09A40004759F /* Reminder+CoreDataProperties.swift */; };
+		958651E3263D09A40004759F /* Habit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651DB263D09A40004759F /* Habit+CoreDataClass.swift */; };
+		958651E4263D09A40004759F /* Habit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651DC263D09A40004759F /* Habit+CoreDataProperties.swift */; };
+		958651E5263D09A40004759F /* HabitDate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651DD263D09A40004759F /* HabitDate+CoreDataClass.swift */; };
+		958651E6263D09A40004759F /* HabitDate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651DE263D09A40004759F /* HabitDate+CoreDataProperties.swift */; };
+		958651E8263D0C800004759F /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651E7263D0C800004759F /* CoreDataController.swift */; };
+		958651EC263D5B600004759F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651EB263D5B600004759F /* DateExtension.swift */; };
+		958651EF263D64FB0004759F /* UIViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651EE263D64FB0004759F /* UIViewControllerAlertExtension.swift */; };
 		95EA741B262FFC8900E3BCBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA741A262FFC8900E3BCBD /* AppDelegate.swift */; };
 		95EA741D262FFC8900E3BCBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA741C262FFC8900E3BCBD /* SceneDelegate.swift */; };
 		95EA7422262FFC8900E3BCBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EA7420262FFC8900E3BCBD /* Main.storyboard */; };
@@ -18,13 +31,25 @@
 		95EA742A262FFC8B00E3BCBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EA7428262FFC8B00E3BCBD /* LaunchScreen.storyboard */; };
 		95EA74352630E2B300E3BCBD /* HabitsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA74342630E2B300E3BCBD /* HabitsOverviewViewController.swift */; };
 		95EA743A2630E6B200E3BCBD /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */; };
-		95EA743F2630E89A00E3BCBD /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA743E2630E89A00E3BCBD /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		953F2273263243AE00BA378E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		953F2276263243CA00BA378E /* AddOrEditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditHabitViewController.swift; sourceTree = "<group>"; };
 		953F22792632442100BA378E /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		9586518E263D03040004759F /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
+		958651C1263D06E80004759F /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
+		958651D7263D09A40004759F /* HabitData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		958651D8263D09A40004759F /* HabitData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitData+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		958651D9263D09A40004759F /* Reminder+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		958651DA263D09A40004759F /* Reminder+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reminder+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		958651DB263D09A40004759F /* Habit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		958651DC263D09A40004759F /* Habit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		958651DD263D09A40004759F /* HabitDate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitDate+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		958651DE263D09A40004759F /* HabitDate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitDate+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		958651E7263D0C800004759F /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
+		958651EB263D5B600004759F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = HabitBot/Extensions/DateExtension.swift; sourceTree = SOURCE_ROOT; };
+		958651EE263D64FB0004759F /* UIViewControllerAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerAlertExtension.swift; sourceTree = "<group>"; };
 		95EA7417262FFC8900E3BCBD /* HabitBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EA741A262FFC8900E3BCBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EA741C262FFC8900E3BCBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +60,6 @@
 		95EA742B262FFC8B00E3BCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95EA74342630E2B300E3BCBD /* HabitsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsOverviewViewController.swift; sourceTree = "<group>"; };
 		95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
-		95EA743E2630E89A00E3BCBD /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +73,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9586518D263D02440004759F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				9586518E263D03040004759F /* MulticastDelegate.swift */,
+				958651C1263D06E80004759F /* DatabaseProtocol.swift */,
+				958651E7263D0C800004759F /* CoreDataController.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		95865190263D03680004759F /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				958651D7263D09A40004759F /* HabitData+CoreDataClass.swift */,
+				958651D8263D09A40004759F /* HabitData+CoreDataProperties.swift */,
+				958651D9263D09A40004759F /* Reminder+CoreDataClass.swift */,
+				958651DA263D09A40004759F /* Reminder+CoreDataProperties.swift */,
+				958651DB263D09A40004759F /* Habit+CoreDataClass.swift */,
+				958651DC263D09A40004759F /* Habit+CoreDataProperties.swift */,
+				958651DD263D09A40004759F /* HabitDate+CoreDataClass.swift */,
+				958651DE263D09A40004759F /* HabitDate+CoreDataProperties.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		958651ED263D63FD0004759F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				958651EB263D5B600004759F /* DateExtension.swift */,
+				958651EE263D64FB0004759F /* UIViewControllerAlertExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		95EA740E262FFC8900E3BCBD = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +126,9 @@
 		95EA7419262FFC8900E3BCBD /* HabitBot */ = {
 			isa = PBXGroup;
 			children = (
+				958651ED263D63FD0004759F /* Extensions */,
+				95865190263D03680004759F /* DataModel */,
+				9586518D263D02440004759F /* Database */,
 				95EA743D2630E87100E3BCBD /* DataClasses */,
 				95EA74382630E68200E3BCBD /* CustomUI */,
 				95EA74332630E28600E3BCBD /* ViewControllers */,
@@ -104,7 +165,6 @@
 		95EA743D2630E87100E3BCBD /* DataClasses */ = {
 			isa = PBXGroup;
 			children = (
-				95EA743E2630E89A00E3BCBD /* Habit.swift */,
 			);
 			path = DataClasses;
 			sourceTree = "<group>";
@@ -179,13 +239,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95EA743F2630E89A00E3BCBD /* Habit.swift in Sources */,
+				958651E6263D09A40004759F /* HabitDate+CoreDataProperties.swift in Sources */,
+				958651EC263D5B600004759F /* DateExtension.swift in Sources */,
+				958651E1263D09A40004759F /* Reminder+CoreDataClass.swift in Sources */,
+				958651DF263D09A40004759F /* HabitData+CoreDataClass.swift in Sources */,
+				958651E5263D09A40004759F /* HabitDate+CoreDataClass.swift in Sources */,
 				95EA741B262FFC8900E3BCBD /* AppDelegate.swift in Sources */,
 				953F2274263243AE00BA378E /* SettingsViewController.swift in Sources */,
 				95EA7425262FFC8900E3BCBD /* HabitBot.xcdatamodeld in Sources */,
 				953F2277263243CA00BA378E /* AddOrEditHabitViewController.swift in Sources */,
 				95EA743A2630E6B200E3BCBD /* HabitTableViewCell.swift in Sources */,
+				958651E0263D09A40004759F /* HabitData+CoreDataProperties.swift in Sources */,
+				958651C2263D06E80004759F /* DatabaseProtocol.swift in Sources */,
+				958651E3263D09A40004759F /* Habit+CoreDataClass.swift in Sources */,
+				958651EF263D64FB0004759F /* UIViewControllerAlertExtension.swift in Sources */,
 				95EA74352630E2B300E3BCBD /* HabitsOverviewViewController.swift in Sources */,
+				9586518F263D03040004759F /* MulticastDelegate.swift in Sources */,
+				958651E4263D09A40004759F /* Habit+CoreDataProperties.swift in Sources */,
+				958651E2263D09A40004759F /* Reminder+CoreDataProperties.swift in Sources */,
+				958651E8263D0C800004759F /* CoreDataController.swift in Sources */,
 				95EA741D262FFC8900E3BCBD /* SceneDelegate.swift in Sources */,
 				953F227A2632442100BA378E /* SummaryViewController.swift in Sources */,
 			);
