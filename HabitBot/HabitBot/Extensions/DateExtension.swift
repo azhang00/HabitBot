@@ -23,5 +23,24 @@ extension Date {
 
         return calendar.date(from: components)!
     }
+    
+    /// This function returns the hour component of the Date object.
+    /// - returns: the hour component of the Date object as an integer.
+    func getHour() -> Int {
+        let calendar = Calendar.current
+        return calendar.component(.hour, from: self)
+    }
+    
+    /// This function returns the minute component of the Date object.
+    /// - returns: the minute component of the Date object as an integer.
+    func getMinutes() -> Int {
+        let calendar = Calendar.current
+        return calendar.component(.minute, from: self)
+    }
+    
+    func getWeekDay() -> Int {
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.component(.weekday, from: self)
+    }
 
 }

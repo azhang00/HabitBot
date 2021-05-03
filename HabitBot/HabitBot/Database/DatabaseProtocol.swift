@@ -44,6 +44,8 @@ protocol DatabaseProtocol: AnyObject {
     
     func createOneMonthOfHabitDates(startDate: Date)
     
+    func fetchHabit(habitName: String) -> Habit?
+    
     /// This function adds a listener that will be notified when there is a change to the saved meals and / or ingredients.
     /// - parameter listener: a `DatabaseListener` to be added
     func addListener(listener: DatabaseListener)

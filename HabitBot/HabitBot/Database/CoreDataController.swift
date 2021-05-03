@@ -89,6 +89,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     func deleteHabit(habit: Habit) {
+        deleteReminder(habit: habit)
         persistentContainer.viewContext.delete(habit)
     }
     
@@ -107,23 +108,104 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         reminder.frequency = frequency
         reminder.count = count
         habit.reminder = reminder
+        
+        // create recurring system notification
+        createReminderNotification(reminder: reminder)
     }
     
     func deleteReminder(habit: Habit) {
         if habit.reminder != nil {
-            persistentContainer.viewContext.delete(habit.reminder!)
+            deleteReminderNotification(reminderName: habit.name!)
+            habit.managedObjectContext!.delete(habit.reminder!)
             habit.reminder = nil
         }
     }
     
+    func createReminderNotification(reminder: Reminder) {
+        // custom actions
+        let completeAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
+                                                  title: reminder.completeMsg!,
+                                                  options: [])
+        
+        let incompleteAction = UNNotificationAction(identifier: "DECLINE_ACTION",
+                                                    title: reminder.incompleteMsg!,
+                                                    options: [])
+        
+        // notification type
+        let recurringNotificationCategory =
+            UNNotificationCategory(identifier: reminder.habit!.name!,
+              actions: [completeAction, incompleteAction],
+              intentIdentifiers: [],
+              hiddenPreviewsBodyPlaceholder: "",
+              options: .customDismissAction)
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([recurringNotificationCategory])
+        
+        let content = UNMutableNotificationContent()
+        content.title = reminder.habit!.name!
+        content.body = reminder.msgDescription!
+        content.categoryIdentifier = recurringNotificationCategory.identifier
+        content.userInfo = ["habitName": reminder.habit!.name!]
+           
+        // create the repeating notifications
+        var hourIncrement = 0
+        for _ in 1...reminder.count {
+            var date = DateComponents()
+            date.hour = (reminder.startTime?.getHour())! + hourIncrement
+            date.minute = (reminder.startTime?.getMinutes())! + hourIncrement
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+            
+            // create the request
+            let request = UNNotificationRequest(identifier: recurringNotificationCategory.identifier + "\(hourIncrement)",
+                        content: content, trigger: trigger)
+            
+            // Schedule the request with the system.
+            notificationCenter.add(request) { (error) in
+                if error != nil {
+                    print("Failed to create the notification.")
+                }
+            }
+            hourIncrement += Int(reminder.frequency)
+        }
+    }
+    
+    func deleteReminderNotification(reminderName: String) {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                if request.identifier.contains(reminderName) {
+                    notificationCenter.removePendingNotificationRequests(withIdentifiers: [request.identifier])
+                }
+            }
+        })
+    }
+    
     func updateHabitCount(habitData: HabitData, incrementVal: Int64) {
-        habitData.count += incrementVal
+        // if the habit is weekly, increment the counts for all the habitData within the week
+        if habitData.habit?.frequencyDuration == "weekly" {
+            let sortedHabitDataByDates = Array(habitData.habit!.habitData!).sorted {
+                return $0.date!.date! < $1.date!.date!
+            }
+            let currentDateIndex = sortedHabitDataByDates.firstIndex(of: habitData)!
+            let weekDay = habitData.date!.date!.getWeekDay()
+            // get the index of the first day of the week
+            let firstDayIndex = currentDateIndex - weekDay
+            for i in 1...7 {
+                if (firstDayIndex + i) > -1 && (firstDayIndex + i) < sortedHabitDataByDates.count {
+                    sortedHabitDataByDates[firstDayIndex + i].count += incrementVal
+                }
+            }
+        } else {
+            // only increment the count of a single habitData if it's a daily habit
+            habitData.count += incrementVal
+        }
     }
     
     func createOneMonthOfHabitDates(startDate: Date) {
         var currentDate = startDate
-        // create 30 new days
-        for _ in 1...30 {
+        // create 35 new days - 35 was chosen as it is exactly 5 weeks
+        for _ in 1...35 {
             let newDate = NSEntityDescription.insertNewObject(forEntityName: "HabitDate", into: persistentContainer.viewContext) as! HabitDate
             newDate.date = currentDate
             currentDate.addTimeInterval(60*60*24)
@@ -156,7 +238,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         if allHabitDataFetchedResultsController == nil {
             // make a request to fetch all meals that are sorted in ascending order by their name
             let request: NSFetchRequest<HabitData> = HabitData.fetchRequest()
-            let nameSortDescriptor = NSSortDescriptor(key: "count", ascending: true)
+            let nameSortDescriptor = NSSortDescriptor(keyPath: \HabitData.habit?.name, ascending: true)
             request.sortDescriptors = [nameSortDescriptor]
             
             // initialise fetched results controller
@@ -185,8 +267,8 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         if allHabitDatesFetchedResultsController == nil {
             // make a request to fetch all HabitDates that are sorted in ascending order by their name
             let request: NSFetchRequest<HabitDate> = HabitDate.fetchRequest()
-            let nameSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-            request.sortDescriptors = [nameSortDescriptor]
+            let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+            request.sortDescriptors = [dateSortDescriptor]
             
             // initialise fetched results controller
             allHabitDatesFetchedResultsController = NSFetchedResultsController<HabitDate>(fetchRequest: request, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
@@ -237,6 +319,23 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             return habits
         }
         return [Habit]()
+    }
+    
+    func fetchHabit(habitName: String) -> Habit? {
+        // make a request to the habit with the provided habit name
+        let request: NSFetchRequest<Habit> = Habit.fetchRequest()
+        request.predicate = NSPredicate(format: "name == %@", habitName)
+        
+        // make the fetch
+        do {
+            let habit = try persistentContainer.viewContext.fetch(request)
+            if habit.count >= 1 {
+                return habit[0]
+            }
+        } catch {
+            print("Fetch Request Failed: \(error)")
+        }
+        return nil
     }
     
     func addListener(listener: DatabaseListener) {

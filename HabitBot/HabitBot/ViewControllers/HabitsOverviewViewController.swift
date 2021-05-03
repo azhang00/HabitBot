@@ -55,7 +55,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             index += 1
         }
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
-            currentHabitData = Array(allHabitDates[habitDataIndex].habits!)
+            currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
+                return $0.habit!.name! < $1.habit!.name!
+            }
         }
     }
     
@@ -70,7 +72,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         if habitDataIndex == -1 {
             displayErrorMessage(title: "No Data", message: "There is no more data earlier than the current date.")
         } else if habitDataIndex < allHabitDates.count {
-            currentHabitData = Array(allHabitDates[habitDataIndex].habits!)
+            currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
+                return $0.habit!.name! < $1.habit!.name!
+            }
             date.text = formatter.string(from: currentDate)
             self.habitsTableView.reloadData()
         }
@@ -80,7 +84,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         currentDate.addTimeInterval(60*60*24)
         habitDataIndex += 1
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
-            currentHabitData = Array(allHabitDates[habitDataIndex].habits!)
+            currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
+                return $0.habit!.name! < $1.habit!.name!
+            }
             date.text = formatter.string(from: currentDate)
             self.habitsTableView.reloadData()
         } else {
@@ -111,8 +117,14 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         if indexPath.section == SECTION_HABIT {
             let habitCell = tableView.dequeueReusableCell(withIdentifier: CELL_HABIT, for: indexPath) as! HabitTableViewCell
             habitCell.habitTitle.text = currentHabitData[indexPath.row].habit!.name
-            habitCell.habitCount.text = "\(currentHabitData[indexPath.row].count) / \(currentHabitData[indexPath.row].habit!.frequency) \(currentHabitData[indexPath.row].habit!.freqDescription!)"
+            if currentHabitData[indexPath.row].count >= currentHabitData[indexPath.row].habit!.frequency {
+                habitCell.habitCount.text = "Done"
+            } else {
+                habitCell.habitCount.text = "\(currentHabitData[indexPath.row].count) / \(currentHabitData[indexPath.row].habit!.frequency) \(currentHabitData[indexPath.row].habit!.freqDescription!)"
+            }
             habitCell.habitBackgroundView.backgroundColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)
+            habitCell.habitData = currentHabitData[indexPath.row]
+            habitCell.tableView = tableView
             return habitCell
         }
         
@@ -134,7 +146,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     func onHabitDateChange(change: DatabaseChange, habitDate: [HabitDate]) {
         allHabitDates = habitDate
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
-            currentHabitData = Array(allHabitDates[habitDataIndex].habits!)
+            currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
+                return $0.habit!.name! < $1.habit!.name!
+            }
         } else {
             currentHabitData = []
             habitDataIndex = 0

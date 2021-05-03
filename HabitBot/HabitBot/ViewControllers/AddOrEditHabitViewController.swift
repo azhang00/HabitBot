@@ -36,6 +36,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var incompleteTaskMessage: UITextField!
     @IBOutlet weak var notificationCount: UITextField!
     @IBOutlet weak var notificationFrequency: UITextField!
+    @IBOutlet weak var notificationStartTime: UITextField!
     @IBOutlet weak var deleteHabitButton: UIButton!
     @IBOutlet weak var reminderSwitch: UISwitch!
     
@@ -57,6 +58,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         ]
     ]
     var habitPicker = UIPickerView()
+    var timePicker = UIDatePicker()
     
     let colours = ["RedColour", "OrangeColour", "YellowColour", "SandColour", "LightGreenColour", "DarkGreenColour", "LightBlueColour", "DarkBlueColour", "PurpleColour", "PinkColour"]
     
@@ -92,14 +94,24 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 habitType.selectedSegmentIndex = 1
                 specialHabit.text = existingHabit?.name
             }
+            
             if existingHabit?.frequencyDuration == "daily" {
                 frequencyDuration.selectedSegmentIndex = 0
             } else {
                 frequencyDuration.selectedSegmentIndex = 1
             }
+            
             if existingHabit?.reminder != nil {
                 reminderView.isHidden = false
                 reminderSwitch.isOn = true
+                reminderDescription.text = existingHabit?.reminder?.msgDescription
+                completedTaskMessage.text = existingHabit?.reminder?.completeMsg
+                incompleteTaskMessage.text = existingHabit?.reminder?.incompleteMsg
+                notificationFrequency.text = "\(existingHabit?.reminder?.frequency ?? 0)"
+                notificationCount.text = "\(existingHabit?.reminder?.count ?? 0)"
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                notificationStartTime.text = formatter.string(from: (existingHabit?.reminder?.startTime)!)
             }
             selectedColourIndex = colours.firstIndex(of: (existingHabit?.colour)!)!
             frequencyCount.text = "\(existingHabit?.frequency ?? 1)"
@@ -116,6 +128,39 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         habitPicker.delegate = self
         habitPicker.dataSource = self
         specialHabit.inputView = habitPicker
+        
+        setTimePicker()
+    }
+    
+    /// This function sets the time picker for the notification start time field.
+    func setTimePicker() {
+        timePicker.datePickerMode = .time
+        timePicker.preferredDatePickerStyle = .wheels
+        
+        // create a toolbar that allows the user to choose the time they have selected
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectTime))
+        let spaceArea = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTimePicker))
+
+        toolbar.setItems([cancelButton, spaceArea, selectButton], animated: false)
+
+        notificationStartTime.inputAccessoryView = toolbar
+        notificationStartTime.inputView = timePicker
+    }
+    
+    /// This function handles the action of users clicking on the 'Select' button when choosing a time from the time picker.
+    @objc func selectTime() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        notificationStartTime.text = formatter.string(from: timePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    /// This function handles the action of users clicking on the 'Cancel' button on the time picker.
+    @objc func cancelTimePicker() {
+        self.view.endEditing(true)
     }
     
     // MARK: - PickerView methods
@@ -213,19 +258,6 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     @IBAction func saveHabit(_ sender: Any) {
-        /*
-         @IBOutlet weak var frequencyDuration: UISegmentedControl!
-         @IBOutlet weak var frequencyLabel: UILabel!
-         @IBOutlet weak var frequencyCount: UITextField!
-         @IBOutlet weak var frequencyDescription: UITextField!
-         
-         @IBOutlet weak var reminderDescription: UITextField!
-         @IBOutlet weak var completedTaskMessage: UITextField!
-         @IBOutlet weak var incompleteTaskMessage: UITextField!
-         @IBOutlet weak var notificationCount: UITextField!
-         @IBOutlet weak var notificationFrequency: UITextField!
-         @IBOutlet weak var deleteHabitButton: UIButton!
-         */
         var missingData = false
         var errorMsg = "Please populate the following fields:"
         
@@ -272,6 +304,60 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         // set colour
         editedHabit?.colour = colours[selectedColourIndex]
         
+        // save reminder if reminders is toggled on
+        if !reminderView.isHidden {
+            // check that reminder fields are filled
+            if let reminderDesc = reminderDescription.text, reminderDesc.isEmpty {
+                errorMsg += "\n- Reminder description"
+                missingData = true
+            }
+            
+            if let completeMessage = completedTaskMessage.text, completeMessage.isEmpty {
+                errorMsg += "\n- Reminder completion message"
+                missingData = true
+            }
+            
+            if let incompleteMessage = incompleteTaskMessage.text, incompleteMessage.isEmpty {
+                errorMsg += "\n- Reminder incomplete message"
+                missingData = true
+            }
+            
+            var reminderFrequency, reminderCount: Int64?
+            if let reminderFreqText = notificationFrequency.text, let _ = Int64(reminderFreqText) {
+                reminderFrequency = Int64(reminderFreqText)
+            } else {
+                errorMsg += "\n- Reminder notification frequency"
+                missingData = true
+            }
+            
+            if let reminderCountText = notificationCount.text, let _ = Int64(reminderCountText) {
+                reminderCount = Int64(reminderCountText)
+            } else {
+                errorMsg += "\n- Reminder notification count"
+                missingData = true
+            }
+            
+            var notifStartTime: Date?
+            if let startTimeText = notificationStartTime.text, startTimeText.isEmpty {
+                errorMsg += "\n- Reminder start time"
+                missingData = true
+            } else {
+                let calendar = Calendar.current
+                var components = calendar.dateComponents([.hour, .minute], from: Date().dateOnly())
+                components.hour = Int(String(notificationStartTime.text!.prefix(2)))
+                components.minute = Int(String(notificationStartTime.text!.suffix(2)))
+                
+                notifStartTime = calendar.date(from: components)
+            }
+            
+            if !missingData {
+                databaseController?.setReminder(habit: editedHabit!, startTime: notifStartTime!, msgDescription: reminderDescription.text!, completeMsg: completedTaskMessage.text!, incompleteMsg: incompleteTaskMessage.text!, frequency: reminderFrequency!, count: reminderCount!)
+            }
+        } else {
+            databaseController?.deleteReminder(habit: editedHabit!)
+        }
+        
+        // show alert if there are fields missing data
         if missingData {
             displayErrorMessage(title: "Missing Data", message: errorMsg)
         } else {
@@ -284,12 +370,9 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
     
+    /// This function will display an alert when users attempt to delete a habit and will delete the
+    /// habit if users select 'Delete'.
     @IBAction func deleteHabit(_ sender: Any) {
-        displayDeleteHabitAlert()
-    }
-    
-    /// This function will display an alert when users attempt to delete a habit.
-    func displayDeleteHabitAlert() {
         let alertController = UIAlertController(title: "Delete Habit", message: "Are you sure you wish to delete the habit \(existingHabit!.name!)?", preferredStyle: .alert)
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))

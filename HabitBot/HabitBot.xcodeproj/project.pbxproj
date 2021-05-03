@@ -37,6 +37,7 @@
 		953F2273263243AE00BA378E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		953F2276263243CA00BA378E /* AddOrEditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditHabitViewController.swift; sourceTree = "<group>"; };
 		953F22792632442100BA378E /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		954148CD263E849100C50C86 /* HabitBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitBot.entitlements; sourceTree = "<group>"; };
 		9586518E263D03040004759F /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
 		958651C1263D06E80004759F /* DatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseProtocol.swift; sourceTree = "<group>"; };
 		958651D7263D09A40004759F /* HabitData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitData+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -126,6 +127,7 @@
 		95EA7419262FFC8900E3BCBD /* HabitBot */ = {
 			isa = PBXGroup;
 			children = (
+				954148CD263E849100C50C86 /* HabitBot.entitlements */,
 				958651ED263D63FD0004759F /* Extensions */,
 				95865190263D03680004759F /* DataModel */,
 				9586518D263D02440004759F /* Database */,
@@ -406,6 +408,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HabitBot/HabitBot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HabitBot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -424,6 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HabitBot/HabitBot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HabitBot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
