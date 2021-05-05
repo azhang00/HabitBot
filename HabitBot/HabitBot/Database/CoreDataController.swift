@@ -33,9 +33,11 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         super.init()
         
         // DELETE LATER
+        /*
         if fetchAllHabits().count == 0 {
             createDefaultHabits()
         }
+        */
         
         if fetchAllHabitDates().count == 0 {
             createOneMonthOfHabitDates(startDate: Date().dateOnly())
@@ -85,7 +87,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
         // once the changes have been saved in persistent storage, we can delete the habit
         // from the child context
-        childContext?.delete(habit)
+        childContext?.reset()
     }
     
     func deleteHabit(habit: Habit) {
@@ -147,6 +149,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         content.body = reminder.msgDescription!
         content.categoryIdentifier = recurringNotificationCategory.identifier
         content.userInfo = ["habitName": reminder.habit!.name!]
+        content.sound = UNNotificationSound.default
            
         // create the repeating notifications
         var hourIncrement = 0
@@ -182,7 +185,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     func updateHabitCount(habitData: HabitData, incrementVal: Int64) {
-        // if the habit is weekly, increment the counts for all the habitData within the week
+        // if the habit is weekly, increment/set the counts for all the habitData within the week
         if habitData.habit?.frequencyDuration == "weekly" {
             let sortedHabitDataByDates = Array(habitData.habit!.habitData!).sorted {
                 return $0.date!.date! < $1.date!.date!
@@ -193,12 +196,20 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             let firstDayIndex = currentDateIndex - weekDay
             for i in 1...7 {
                 if (firstDayIndex + i) > -1 && (firstDayIndex + i) < sortedHabitDataByDates.count {
-                    sortedHabitDataByDates[firstDayIndex + i].count += incrementVal
+                    if habitData.habit?.type == "custom" {
+                        sortedHabitDataByDates[firstDayIndex + i].count += incrementVal
+                    } else {
+                        sortedHabitDataByDates[firstDayIndex + i].count = incrementVal
+                    }
                 }
             }
         } else {
-            // only increment the count of a single habitData if it's a daily habit
-            habitData.count += incrementVal
+            // only increment/set the count of a single habitData if it's a daily habit
+            if habitData.habit?.type == "custom" {
+                habitData.count += incrementVal
+            } else {
+                habitData.count = incrementVal
+            }
         }
     }
     
@@ -313,8 +324,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             }
         }
         
-        // if there are any meals fetched, return the array of Meals; otherwise, return
-        // an empty Meal array
+        // return the fetched habits
         if let habits = allHabitFetchedResultsController?.fetchedObjects {
             return habits
         }
@@ -345,6 +355,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
         if listener.listenerType == .habitDate || listener.listenerType == .all {
             listener.onHabitDateChange(change: .update, habitDate: fetchAllHabitDates())
+        }
+        if listener.listenerType == .habit || listener.listenerType == .all {
+            listener.onHabitChange(change: .update, habit: fetchAllHabits())
         }
     }
     

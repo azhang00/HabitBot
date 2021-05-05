@@ -50,10 +50,10 @@ class HabitTableViewCell: UITableViewCell {
                 }
                 UIView.animate(withDuration: 0.75, animations: { [self] in
                     self.center.x += self.bounds.width
-                    // decrement habit data count by 1
-                    databaseController?.updateHabitCount(habitData: habitData!, incrementVal: -1)
                 }, completion: { (value: Bool) in
                     self.center = self.originalCenter
+                    // decrement habit data count by 1
+                    self.databaseController?.updateHabitCount(habitData: self.habitData!, incrementVal: -1)
                     self.tableView?.reloadData()
                 })
             } else if gesture.direction == UISwipeGestureRecognizer.Direction.left {
@@ -63,10 +63,10 @@ class HabitTableViewCell: UITableViewCell {
                 }
                 UIView.animate(withDuration: 0.75, animations: { [self] in
                     self.center.x -= self.bounds.width
-                    // increment habit data count by 1
-                    databaseController?.updateHabitCount(habitData: habitData!, incrementVal: 1)
                 }, completion: { (value: Bool) in
                     self.center = self.originalCenter
+                    // increment habit data count by 1
+                    self.databaseController?.updateHabitCount(habitData: self.habitData!, incrementVal: 1)
                     self.tableView?.reloadData()
                 })
             }

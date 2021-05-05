@@ -18,7 +18,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     let CELL_HABIT = "habitCell"
     let CELL_INFO = "infoCell"
     
-    var listenerType = ListenerType.habitDate
+    var listenerType = ListenerType.all
     weak var databaseController: DatabaseProtocol?
     
     var currentDate: Date = Date().dateOnly()
@@ -140,7 +140,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     // MARK: - Database Listener
     
     func onHabitDataForADateChange(change: DatabaseChange, habitData: [HabitData]) {
-        // do nothing
+        self.habitsTableView.reloadData()
     }
     
     func onHabitDateChange(change: DatabaseChange, habitDate: [HabitDate]) {
@@ -155,10 +155,13 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         }
         self.habitsTableView.reloadData()
     }
+    
+    func onHabitChange(change: DatabaseChange, habit: [Habit]) {
+        self.habitsTableView.reloadData()
+    }
 
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddHabitSegue" {
             let addOrEditMealController = segue.destination as! AddOrEditHabitViewController

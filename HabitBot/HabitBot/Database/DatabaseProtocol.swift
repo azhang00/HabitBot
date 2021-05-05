@@ -16,6 +16,7 @@ enum DatabaseChange {
 enum ListenerType {
     case habitData
     case habitDate
+    case habit
     case all
 }
 
@@ -25,6 +26,8 @@ protocol DatabaseListener: AnyObject {
     func onHabitDataForADateChange(change: DatabaseChange, habitData: [HabitData])
     
     func onHabitDateChange(change: DatabaseChange, habitDate: [HabitDate])
+    
+    func onHabitChange(change: DatabaseChange, habit: [Habit])
 }
 
 protocol DatabaseProtocol: AnyObject {

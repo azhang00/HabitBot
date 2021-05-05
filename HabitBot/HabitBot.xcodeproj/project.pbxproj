@@ -23,6 +23,7 @@
 		958651E8263D0C800004759F /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651E7263D0C800004759F /* CoreDataController.swift */; };
 		958651EC263D5B600004759F /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651EB263D5B600004759F /* DateExtension.swift */; };
 		958651EF263D64FB0004759F /* UIViewControllerAlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958651EE263D64FB0004759F /* UIViewControllerAlertExtension.swift */; };
+		95E3996826410D4400EA4032 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E3996726410D4400EA4032 /* HealthKit.framework */; };
 		95EA741B262FFC8900E3BCBD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA741A262FFC8900E3BCBD /* AppDelegate.swift */; };
 		95EA741D262FFC8900E3BCBD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA741C262FFC8900E3BCBD /* SceneDelegate.swift */; };
 		95EA7422262FFC8900E3BCBD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EA7420262FFC8900E3BCBD /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		958651E7263D0C800004759F /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		958651EB263D5B600004759F /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DateExtension.swift; path = HabitBot/Extensions/DateExtension.swift; sourceTree = SOURCE_ROOT; };
 		958651EE263D64FB0004759F /* UIViewControllerAlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerAlertExtension.swift; sourceTree = "<group>"; };
+		95E3996726410D4400EA4032 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		95EA7417262FFC8900E3BCBD /* HabitBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95EA741A262FFC8900E3BCBD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95EA741C262FFC8900E3BCBD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95E3996826410D4400EA4032 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,11 +111,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		95E3996626410D4400EA4032 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95E3996726410D4400EA4032 /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		95EA740E262FFC8900E3BCBD = {
 			isa = PBXGroup;
 			children = (
 				95EA7419262FFC8900E3BCBD /* HabitBot */,
 				95EA7418262FFC8900E3BCBD /* Products */,
+				95E3996626410D4400EA4032 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

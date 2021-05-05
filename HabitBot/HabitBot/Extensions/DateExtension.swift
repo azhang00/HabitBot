@@ -43,4 +43,15 @@ extension Date {
         return calendar.component(.weekday, from: self)
     }
 
+    func setTime(hour: Int, minute: Int, second: Int) -> Date {
+        let calendar = Calendar.current
+
+        var components = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: self)
+
+        components.hour = hour
+        components.minute = minute
+        components.second = second
+
+        return calendar.date(from: components)!
+    }
 }

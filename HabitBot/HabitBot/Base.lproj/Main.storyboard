@@ -541,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrc-02-BLs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742.0289855072465" y="79.6875"/>
+            <point key="canvasLocation" x="1852" y="183"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yd1-DY-LmJ">
@@ -561,6 +561,22 @@
             </objects>
             <point key="canvasLocation" x="929" y="-751"/>
         </scene>
+        <!--Instructions-->
+        <scene sceneID="l5b-KN-QpU">
+            <objects>
+                <viewController id="GlQ-B2-Ob4" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B0F-4Z-g4P">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7cZ-v5-4iY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Instructions" id="co1-7Z-Ez9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccs-LI-35r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-786" y="82"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="8ZR-Kj-pWf">
             <objects>
@@ -569,19 +585,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLX-rh-zeH">
-                                <rect key="frame" x="16" y="104" width="382" height="17"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Account Name" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8dd-Sf-sen">
-                                <rect key="frame" x="16" y="129" width="382" height="31.5"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-u5-TsO">
-                                <rect key="frame" x="0.0" y="176.5" width="414" height="685.5"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="habitNotificationCell" textLabel="tez-xQ-qBl" style="IBUITableViewCellStyleDefault" id="td9-7b-Jl5">
@@ -634,6 +639,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GlQ-B2-Ob4" kind="show" id="ApU-XD-Nd8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -642,15 +650,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="g7x-u5-TsO" firstAttribute="leading" secondItem="Xlc-Z5-Jqa" secondAttribute="leading" id="0d9-c5-8iH"/>
-                            <constraint firstItem="8dd-Sf-sen" firstAttribute="leading" secondItem="Xlc-Z5-Jqa" secondAttribute="leading" constant="16" id="5qj-Ul-fKU"/>
-                            <constraint firstItem="NLX-rh-zeH" firstAttribute="top" secondItem="Xlc-Z5-Jqa" secondAttribute="top" constant="16" id="DDf-du-p8a"/>
-                            <constraint firstItem="g7x-u5-TsO" firstAttribute="top" secondItem="8dd-Sf-sen" secondAttribute="bottom" constant="16" id="QyE-BY-bmr"/>
-                            <constraint firstItem="NLX-rh-zeH" firstAttribute="leading" secondItem="Xlc-Z5-Jqa" secondAttribute="leading" constant="16" id="RiV-Fh-ccc"/>
                             <constraint firstItem="Xlc-Z5-Jqa" firstAttribute="trailing" secondItem="g7x-u5-TsO" secondAttribute="trailing" id="Vox-JC-Q47"/>
+                            <constraint firstItem="g7x-u5-TsO" firstAttribute="top" secondItem="Xlc-Z5-Jqa" secondAttribute="top" id="XzU-hG-4zg"/>
                             <constraint firstItem="Xlc-Z5-Jqa" firstAttribute="bottom" secondItem="g7x-u5-TsO" secondAttribute="bottom" id="beh-Yu-0UF"/>
-                            <constraint firstItem="Xlc-Z5-Jqa" firstAttribute="trailing" secondItem="8dd-Sf-sen" secondAttribute="trailing" constant="16" id="l9J-C9-Bqc"/>
-                            <constraint firstItem="8dd-Sf-sen" firstAttribute="top" secondItem="NLX-rh-zeH" secondAttribute="bottom" constant="8" id="rlE-Qg-fLb"/>
-                            <constraint firstItem="Xlc-Z5-Jqa" firstAttribute="trailing" secondItem="NLX-rh-zeH" secondAttribute="trailing" constant="16" id="uaY-rn-WFS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="uUK-lx-bc5"/>
