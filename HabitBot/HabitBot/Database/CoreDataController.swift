@@ -32,15 +32,19 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
         super.init()
         
+        // create default habits - TO BE DELETED IN LATER MILESTONES
         if fetchAllHabits().count == 0 {
             createDefaultHabits()
         }
         
+        // create habit dates if none exist
         if fetchAllHabitDates().count == 0 {
             createOneMonthOfHabitDates(startDate: Date().dateOnly())
         }
         
     }
+    
+    // MARK: - Habit methods
     
     /// This function creates default habits.
     func createDefaultHabits() {
@@ -82,8 +86,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         } catch {
             fatalError("Failed to save changes to Core Data with error: \(error)")
         }
-        // once the changes have been saved in persistent storage, we can delete the habit
-        // from the child context
+        // once the changes have been saved in persistent storage, we can reset the child context
         childContext?.reset()
     }
     
@@ -122,8 +125,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
     }
     
+    /// This function schedules a new recurring reminder notification.
+    /// - parameter reminder: reminder to be scheduled
     func createReminderNotification(reminder: Reminder) {
-        // custom actions
+        // custom notification actions
         let completeAction = UNNotificationAction(identifier: "ACCEPT_ACTION",
                                                   title: reminder.completeMsg!,
                                                   options: [])
@@ -132,7 +137,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
                                                     title: reminder.incompleteMsg!,
                                                     options: [])
         
-        // notification type
+        // create notification category
         let recurringNotificationCategory =
             UNNotificationCategory(identifier: reminder.habit!.name!,
               actions: [completeAction, incompleteAction],
@@ -172,6 +177,8 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
     }
     
+    /// This function deletes a recurring reminder from the notification center.
+    /// - parameter reminderName: name of the reminder to be deleted
     func deleteReminderNotification(reminderName: String) {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.getPendingNotificationRequests(completionHandler: { requests in
@@ -204,15 +211,18 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     
     // MARK: - HabitData methods
     
+    /// This function creates new HabitData for a Habit starting at the provided start date.
+    /// - parameter habit: the new HabitData's habit
+    /// - parameter startDate: the first date that the new HabitData objects should be created for
     func createHabitData(habit: Habit, startDate: Date) {
         let habitDates = fetchAllHabitDates()
         var count = 0
         for date in habitDates {
+            // create a new HabitData for the existing dates starting from the start date
             if date.date! >= startDate {
                 count += 1
                 let habitData = NSEntityDescription.insertNewObject(forEntityName: "HabitData", into: persistentContainer.viewContext) as! HabitData
                 habitData.count = 0
-                // habitData.habit = habit
                 date.addToHabits(habitData)
                 habit.addToHabitData(habitData)
             }
@@ -250,6 +260,8 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     
     // MARK: - Fetch methods
     
+    /// This function fetches all HabitData from persistent storage.
+    /// - returns: an array containing all `HabitData` objects in the database.
     func fetchAllHabitData() -> [HabitData] {
         if allHabitDataFetchedResultsController == nil {
             // make a request to fetch all meals that are sorted in ascending order by their name
@@ -271,17 +283,18 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             }
         }
         
-        // if there are any meals fetched, return the array of Meals; otherwise, return
-        // an empty Meal array
+        // return the fetched HabitData
         if let habitData = allHabitDataFetchedResultsController?.fetchedObjects {
             return habitData
         }
         return [HabitData]()
     }
     
+    /// This function fetches all HabitDates from persistent storage.
+    /// - returns: an array containing all `HabitDate` objects in the database.
     func fetchAllHabitDates() -> [HabitDate] {
         if allHabitDatesFetchedResultsController == nil {
-            // make a request to fetch all HabitDates that are sorted in ascending order by their name
+            // make a request to fetch all HabitDates that are sorted in ascending order by their date
             let request: NSFetchRequest<HabitDate> = HabitDate.fetchRequest()
             let dateSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
             request.sortDescriptors = [dateSortDescriptor]
@@ -300,14 +313,16 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             }
         }
         
-        // if there are any meals fetched, return the array of Meals; otherwise, return
-        // an empty Meal array
+        // if there are any HabitDates fetched, return the array of HabitDates; otherwise, return
+        // an empty HabitDate array
         if let habitDate = allHabitDatesFetchedResultsController?.fetchedObjects {
             return habitDate
         }
         return [HabitDate]()
     }
     
+    /// This function fetches all Habits from persistent storage.
+    /// - returns: an array containing all `Habit` objects in the database.
     func fetchAllHabits() -> [Habit] {
         if allHabitFetchedResultsController == nil {
             // make a request to fetch all habits that are sorted in ascending order by their name

@@ -137,7 +137,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         timePicker.datePickerMode = .time
         timePicker.preferredDatePickerStyle = .wheels
         
-        // create a toolbar that allows the user to choose the time they have selected
+        // create a toolbar that allows the user to choose the time they have selected or dismiss the picker
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         let selectButton = UIBarButtonItem(title: "Select", style: .plain, target: self, action: #selector(selectTime))
@@ -249,6 +249,8 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
     
+    /// This function will update the visibility of the reminder section based on the reminder switch state.
+    /// - parameter sender: `UISwitch` that was toggled
     @IBAction func toggleReminder(_ sender: UISwitch) {
         if sender.isOn {
             reminderView.isHidden = false
@@ -257,11 +259,13 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
     
+    /// This function saves the habit with the data entered by the user. It will display an error message if any required fields are empty.
+    /// - parameter sender: button that was clicked on
     @IBAction func saveHabit(_ sender: Any) {
         var missingData = false
         var errorMsg = "Please populate the following fields:"
         
-        // check whether data fields are missing
+        // check whether data fields are missing information
         if habitType.selectedSegmentIndex == 0 {
             if let name = habitName.text, !name.isEmpty {
                 editedHabit!.name = name
@@ -342,6 +346,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 errorMsg += "\n- Reminder start time"
                 missingData = true
             } else {
+                // get the start time for the reminder notification
                 let calendar = Calendar.current
                 var components = calendar.dateComponents([.hour, .minute], from: Date().dateOnly())
                 components.hour = Int(String(notificationStartTime.text!.prefix(2)))
@@ -350,10 +355,12 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 notifStartTime = calendar.date(from: components)
             }
             
+            // save the reminder if there isn't any missing data
             if !missingData {
                 databaseController?.setReminder(habit: editedHabit!, startTime: notifStartTime!, msgDescription: reminderDescription.text!, completeMsg: completedTaskMessage.text!, incompleteMsg: incompleteTaskMessage.text!, frequency: reminderFrequency!, count: reminderCount!)
             }
         } else {
+            // delete the reminder if reminders is toggled off
             databaseController?.deleteReminder(habit: editedHabit!)
         }
         
@@ -372,6 +379,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     /// This function will display an alert when users attempt to delete a habit and will delete the
     /// habit if users select 'Delete'.
+    /// - parameter sender: button that was clicked on
     @IBAction func deleteHabit(_ sender: Any) {
         let alertController = UIAlertController(title: "Delete Habit", message: "Are you sure you wish to delete the habit \(existingHabit!.name!)?", preferredStyle: .alert)
         
@@ -385,15 +393,5 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         self.present(alertController, animated: true, completion: nil)
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

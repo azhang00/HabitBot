@@ -22,8 +22,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.settingsTableView.delegate = self
         self.settingsTableView.dataSource = self
-
-        // Do any additional setup after loading the view.
     }
     
     // MARK: - TableView functions
@@ -55,13 +53,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == SECTION_REMINDERS {
             let reminderCell = tableView.dequeueReusableCell(withIdentifier: CELL_NOTIF, for: indexPath) as! NotificationTableViewCell
             reminderCell.view = self
             reminderCell.notificationLabel?.text = "Push notifications"
             
-            // check whether notifications are turned on
+            // check whether notifications are turned on and toggle the switch accordingly
             let notifCenter = UNUserNotificationCenter.current()
             notifCenter.getNotificationSettings(completionHandler: { permission in
                 if permission.authorizationStatus == .authorized {
@@ -81,16 +78,5 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         infoCell.textLabel?.text = "How to use the application"
         return infoCell
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

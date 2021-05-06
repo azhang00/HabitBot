@@ -43,7 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     print("Did not get HealthKit access permissions.")
                 } else {
                     print("Obtained HealthKit permissions.")
+                    
+                    // get updated health data
                     self.updateHealthData(types: allTypes)
+                    // set up observer for health data so the app can get background updates
                     self.setUpBackgroundHealthDataObserver(allTypes: allTypes)
                 }
             }
@@ -51,13 +54,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
+    /// This function sets up observers for health data.
+    /// - parameter allTypes: a set of all `HKSampleType` data that the application wants to observe from the Health app
     func setUpBackgroundHealthDataObserver(allTypes: Set<HKSampleType>) {
-        // set up background delivery for each HealthKit data
+        // update frequency is set to hourly by default
         var frequency = HKUpdateFrequency.hourly
         for type in allTypes {
             if type.identifier == HKCategoryTypeIdentifier.sleepAnalysis.rawValue {
+                // sleep data updates daily
                 frequency = HKUpdateFrequency.daily
             }
+            
+            // set up background delivery for each HealthKit data
             self.healthStore?.enableBackgroundDelivery(for: type, frequency: frequency, withCompletion: {
                 success, error in
                 if !success && error != nil {
@@ -65,11 +73,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             })
             
+            // set up handler method when observed data changes
             let query = HKObserverQuery(sampleType: type, predicate: nil, updateHandler: {
                 query, completionHandler, error in
                 guard error != nil else {
                   return
                 }
+                // get updated health data
                 self.updateHealthData(types: [type])
                 completionHandler()
                 
@@ -78,6 +88,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    /// This function obtains the updated health data from the Health app and stores the updates in core data.
+    /// - parameter types: a set of all `HKSampleType` data that the application wants to obtain from the Health app
     func updateHealthData(types: Set<HKSampleType>) {
         // create day interval and anchor date
         let calendar = Calendar.current
@@ -118,7 +130,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         }
                     }
                 }
+                
                 if habitData != nil {
+                    // fetch updated sleep data and store it in core data
                     if habitName == "Sleep Duration" {
                         var startDate = Date()
                         startDate.addTimeInterval(-60*60*24)
@@ -129,6 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             if error != nil {
                                 print("Error in retrieving sleep data: \(error!)")
                             } else {
+                                // calculate the sleep duration
                                 var totalTime = 0
                                 if let result = result {
                                    for item in result {
@@ -143,7 +158,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         }
                         healthStore?.execute(query)
                     } else {
-                        // fetch health data
+                        // fetch other health data and store it in core data
                         let query = HKStatisticsCollectionQuery(quantityType: type as! HKQuantityType,
                                                                 quantitySamplePredicate: nil,
                                                                 options: .cumulativeSum,
@@ -158,6 +173,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             let endDate = NSDate()
                             let startDate = calendar.date(byAdding: .day, value: 0, to: endDate as Date, wrappingComponents: false)
                             if let results = results {
+                                // get the health data for today's date
                                 results.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
                                     if let quantity = statistics.sumQuantity() {
                                         let count = quantity.doubleValue(for: unit!)

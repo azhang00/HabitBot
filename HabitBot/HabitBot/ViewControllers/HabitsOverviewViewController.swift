@@ -55,6 +55,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             index += 1
         }
         
+        // sort the habits in alphabetical order
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
@@ -67,6 +68,8 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         databaseController?.removeListener(listener: self)
     }
     
+    /// This function handles the action of displaying the previous day's habit data. It will display an alert if the current date is the initial date to contain any data.
+    /// - parameter sender: button that was clicked on
     @IBAction func goBackOneDay(_ sender: Any) {
         if habitDataIndex == 0 {
             displayErrorMessage(title: "No Data", message: "There is no more data earlier than the current date.")
@@ -81,6 +84,8 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         }
     }
     
+    /// This function handles the action of displaying the next day's habit data.
+    /// - parameter sender: button that was clicked on
     @IBAction func goAheadOneDay(_ sender: Any) {
         currentDate.addTimeInterval(60*60*24)
         habitDataIndex += 1
@@ -91,7 +96,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             date.text = formatter.string(from: currentDate)
             self.habitsTableView.reloadData()
         } else {
-            // create more HabitDates in Core Data
+            // create more HabitDates in Core Data if no more future dates exist
             databaseController?.createOneMonthOfHabitDates(startDate: currentDate)
         }
     }
@@ -114,21 +119,25 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.section == SECTION_HABIT {
             let habitCell = tableView.dequeueReusableCell(withIdentifier: CELL_HABIT, for: indexPath) as! HabitTableViewCell
+            
+            // populate the habit cell with the habit's name and count
             habitCell.habitTitle.text = currentHabitData[indexPath.row].habit!.name
             if currentHabitData[indexPath.row].count >= currentHabitData[indexPath.row].habit!.frequency {
                 habitCell.habitCount.text = "Done"
             } else {
                 habitCell.habitCount.text = "\(currentHabitData[indexPath.row].count) / \(currentHabitData[indexPath.row].habit!.frequency) \(currentHabitData[indexPath.row].habit!.freqDescription!)"
             }
+            
+            // set the cell background colour to match the chosen colour for the habit
             habitCell.habitBackgroundView.backgroundColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)
             habitCell.habitData = currentHabitData[indexPath.row]
             habitCell.tableView = tableView
             return habitCell
         }
         
+        // info cell either contains instructions for adding a new habit or updating a habit
         let infoCell = tableView.dequeueReusableCell(withIdentifier: CELL_INFO, for: indexPath)
         if currentHabitData.count > 0 {
             infoCell.textLabel?.text = "Instructions: Swipe left / right to increment / decrement habit count, and tap on a habit to edit the habit."
@@ -146,7 +155,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     
     func onHabitDateChange(change: DatabaseChange, habitDate: [HabitDate]) {
         allHabitDates = habitDate
+        // check that the index is still valid
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
+            // sort the habits by name in alphabetical order
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
             }

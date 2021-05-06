@@ -24,6 +24,8 @@ class NotificationTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    /// This function handles the action of users toggling the push notification switch and will trigger an alert to inform users to navigate to Settings to change their notification settings for the application.
+    /// - parameter sender: `UISwitch` object that was toggled.
     @IBAction func toggleNotificationSettings(_ sender: UISwitch) {
         let alertController = UIAlertController(title: "Change push notification settings", message: "Please change notification settings by navigating to your device's Settings app > HabitBot > Notifications > Allow Notifications.", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { _ in
