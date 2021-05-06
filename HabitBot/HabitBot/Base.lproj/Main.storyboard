@@ -173,11 +173,13 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Times, Cups" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfQ-cO-dnj">
                                                 <rect key="frame" x="16" y="332" width="350" height="22"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select habit" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxo-57-9pc">
                                                 <rect key="frame" x="16" y="136" width="350" height="22"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -199,6 +201,7 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter habit name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qZn-zZ-ETX">
                                                 <rect key="frame" x="16" y="136" width="350" height="22"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -285,6 +288,7 @@
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4zP-3q-OR8">
                                                 <rect key="frame" x="180" y="257.5" width="186" height="22"/>
+                                                <color key="textColor" name="AccentColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
@@ -309,6 +313,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Have you drank one cup of water?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-qd-POS">
                                                                 <rect key="frame" x="0.0" y="32" width="350" height="0.0"/>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -320,6 +325,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Yes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-mk-MRi">
                                                                 <rect key="frame" x="0.0" y="64" width="350" height="0.0"/>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -331,6 +337,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. No" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-Op-oxb">
                                                                 <rect key="frame" x="0.0" y="96" width="350" height="0.0"/>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
@@ -339,6 +346,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="FnF-SR-UUH"/>
                                                                 </constraints>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
@@ -353,6 +361,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="kQ9-Ny-wgh"/>
                                                                 </constraints>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
@@ -370,6 +379,7 @@
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Time" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-WW-qtP">
                                                                 <rect key="frame" x="0.0" y="160" width="334" height="0.0"/>
+                                                                <color key="textColor" name="AccentColor"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue"/>
                                                             </textField>
@@ -568,72 +578,130 @@
                     <view key="view" contentMode="scaleToFill" id="B0F-4Z-g4P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to add a Habit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsS-fX-iGX">
+                                <rect key="frame" x="16" y="104" width="382" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Navigate to the Habits page and click on the + button at the top right hand corner of the screen." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EO-yW-5xs">
+                                <rect key="frame" x="16" y="141" width="382" height="36"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to edit / delete a Habit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GD-bT-XZM">
+                                <rect key="frame" x="16" y="201" width="382" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on habit in the Habit screen to edit / delete the habit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHo-hg-4g5">
+                                <rect key="frame" x="16" y="238" width="382" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to update a habit's progress:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xb1-pn-YNg">
+                                <rect key="frame" x="16" y="279" width="382" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6x-Me-8Gf">
+                                <rect key="frame" x="16" y="316" width="382" height="93"/>
+                                <string key="text">In the Habit screen, swipe left on a habit to increment a habit's count by 1 and swipe right to decrement a habit's count by 1. Note that only custom habits can be edited this way; special habits will be automatically updated by syncing with Health data.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7cZ-v5-4iY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="SsS-fX-iGX" secondAttribute="trailing" constant="16" id="4I3-WW-MkM"/>
+                            <constraint firstItem="xb1-pn-YNg" firstAttribute="top" secondItem="cHo-hg-4g5" secondAttribute="bottom" constant="24" id="6ag-mr-Mdz"/>
+                            <constraint firstItem="SsS-fX-iGX" firstAttribute="top" secondItem="7cZ-v5-4iY" secondAttribute="top" constant="16" id="6vV-0n-pLB"/>
+                            <constraint firstItem="4EO-yW-5xs" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="7MX-e7-uYF"/>
+                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="4EO-yW-5xs" secondAttribute="trailing" constant="16" id="N8G-c1-cIW"/>
+                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="xb1-pn-YNg" secondAttribute="trailing" constant="16" id="N8x-qq-gCk"/>
+                            <constraint firstItem="xb1-pn-YNg" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="Ofa-J1-OdH"/>
+                            <constraint firstItem="0GD-bT-XZM" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="Prd-Xa-OfJ"/>
+                            <constraint firstItem="cHo-hg-4g5" firstAttribute="top" secondItem="0GD-bT-XZM" secondAttribute="bottom" constant="16" id="WDS-kV-XIq"/>
+                            <constraint firstAttribute="trailing" secondItem="r6x-Me-8Gf" secondAttribute="trailing" constant="16" id="Xii-MC-2JC"/>
+                            <constraint firstItem="r6x-Me-8Gf" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="boT-GI-Y7L"/>
+                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="cHo-hg-4g5" secondAttribute="trailing" constant="16" id="djC-tz-QzY"/>
+                            <constraint firstItem="0GD-bT-XZM" firstAttribute="top" secondItem="4EO-yW-5xs" secondAttribute="bottom" constant="24" id="dwP-7H-0kq"/>
+                            <constraint firstItem="r6x-Me-8Gf" firstAttribute="top" secondItem="xb1-pn-YNg" secondAttribute="bottom" constant="16" id="ff3-4S-q1p"/>
+                            <constraint firstItem="cHo-hg-4g5" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="hEA-WK-0xb"/>
+                            <constraint firstItem="SsS-fX-iGX" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="rh2-J5-aem"/>
+                            <constraint firstItem="4EO-yW-5xs" firstAttribute="top" secondItem="SsS-fX-iGX" secondAttribute="bottom" constant="16" id="uU5-4z-FBg"/>
+                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="0GD-bT-XZM" secondAttribute="trailing" constant="16" id="yOv-No-o6i"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Instructions" id="co1-7Z-Ez9"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ccs-LI-35r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-786" y="82"/>
+            <point key="canvasLocation" x="-786.95652173913049" y="81.696428571428569"/>
         </scene>
         <!--Settings-->
         <scene sceneID="8ZR-Kj-pWf">
             <objects>
-                <viewController id="uye-Sj-iTH" sceneMemberID="viewController">
+                <viewController id="uye-Sj-iTH" customClass="SettingsViewController" customModule="HabitBot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Hp-Kf-MQ9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-u5-TsO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="g7x-u5-TsO">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="habitNotificationCell" textLabel="tez-xQ-qBl" style="IBUITableViewCellStyleDefault" id="td9-7b-Jl5">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notificationCell" id="td9-7b-Jl5" customClass="NotificationTableViewCell" customModule="HabitBot" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="td9-7b-Jl5" id="wF1-OG-g9k">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Habit reminder notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tez-xQ-qBl">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw4-6x-dSC">
+                                                    <rect key="frame" x="18" y="11.5" width="87.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgf-rZ-C3d">
+                                                    <rect key="frame" x="349" y="6.5" width="51" height="31"/>
+                                                    <color key="onTintColor" name="AccentColor"/>
+                                                    <connections>
+                                                        <action selector="toggleNotificationSettings:" destination="td9-7b-Jl5" eventType="valueChanged" id="H2S-i2-Zip"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Iw4-6x-dSC" firstAttribute="centerY" secondItem="wF1-OG-g9k" secondAttribute="centerY" id="8Ol-Jf-S4p"/>
+                                                <constraint firstItem="Bgf-rZ-C3d" firstAttribute="centerY" secondItem="wF1-OG-g9k" secondAttribute="centerY" id="Vdf-Vt-UXt"/>
+                                                <constraint firstItem="Iw4-6x-dSC" firstAttribute="leading" secondItem="wF1-OG-g9k" secondAttribute="leading" constant="18" id="hXr-4r-Gs9"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bgf-rZ-C3d" secondAttribute="trailing" constant="16" id="vVo-vG-14j"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="notificationLabel" destination="Iw4-6x-dSC" id="EJq-eK-5d4"/>
+                                            <outlet property="notificationSwitch" destination="Bgf-rZ-C3d" id="FRu-Sn-BM1"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="quoteNotificationCell" textLabel="yNw-Cx-GQk" style="IBUITableViewCellStyleDefault" id="2hh-Mf-sDk">
-                                        <rect key="frame" x="0.0" y="68" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2hh-Mf-sDk" id="Wmb-6z-32g">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Daily motivational quotes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yNw-Cx-GQk">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appInstructCell" textLabel="Fvz-cS-2qv" style="IBUITableViewCellStyleDefault" id="Dw2-J0-wGl">
-                                        <rect key="frame" x="0.0" y="111.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="appInstructCell" textLabel="Fvz-cS-2qv" style="IBUITableViewCellStyleDefault" id="Dw2-J0-wGl">
+                                        <rect key="frame" x="0.0" y="93" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dw2-J0-wGl" id="kfP-2q-eNE">
                                             <rect key="frame" x="0.0" y="0.0" width="384.5" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="How to use the application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fvz-cS-2qv">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="How to use the application" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Fvz-cS-2qv">
                                                     <rect key="frame" x="20" y="0.0" width="356.5" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -656,6 +724,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="uUK-lx-bc5"/>
+                    <connections>
+                        <outlet property="settingsTableView" destination="g7x-u5-TsO" id="gzu-8h-hHy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CPd-jO-fuG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -21,7 +21,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     var listenerType = ListenerType.all
     weak var databaseController: DatabaseProtocol?
     
-    var currentDate: Date = Date().dateOnly()
+    var currentDate = Date().dateOnly()
     var habitDataIndex = 0
     var currentHabitData: [HabitData] = []
     var allHabitDates: [HabitDate] = []
@@ -54,6 +54,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             }
             index += 1
         }
+        
         if habitDataIndex < allHabitDates.count && habitDataIndex > -1 {
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
@@ -67,11 +68,11 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func goBackOneDay(_ sender: Any) {
-        currentDate.addTimeInterval(-60*60*24)
-        habitDataIndex -= 1
-        if habitDataIndex == -1 {
+        if habitDataIndex == 0 {
             displayErrorMessage(title: "No Data", message: "There is no more data earlier than the current date.")
-        } else if habitDataIndex < allHabitDates.count {
+        } else {
+            currentDate.addTimeInterval(-60*60*24)
+            habitDataIndex -= 1
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
             }

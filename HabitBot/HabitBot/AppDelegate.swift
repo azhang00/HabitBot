@@ -160,9 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             if let results = results {
                                 results.enumerateStatistics(from: startDate!, to: endDate as Date) { statistics, stop in
                                     if let quantity = statistics.sumQuantity() {
-                                        let date = statistics.startDate
                                         let count = quantity.doubleValue(for: unit!)
-                                        print("\(date): \(habitName!) = \(count)")
                                         self.databaseController?.updateHabitCount(habitData: habitData!, incrementVal: Int64(count))
                                     }
                                 }
@@ -201,10 +199,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             // get habit
             let habit = databaseController?.fetchHabit(habitName: habitName)
             if habit != nil {
-                for habitData in habit!.habitData! {
-                    if habitData.date!.date == Date().dateOnly() {
-                        databaseController?.updateHabitCount(habitData: habitData, incrementVal: 1)
-                        break
+                // increment habit count by 1 if it is a custom habit
+                if habit!.type! == "custom" {
+                    for habitData in habit!.habitData! {
+                        if habitData.date!.date == Date().dateOnly() {
+                            databaseController?.updateHabitCount(habitData: habitData, incrementVal: 1)
+                            break
+                        }
+                    }
+                } else {
+                    // update habit count by obtaining health data if it is a special habit
+                    switch habitName {
+                    case "Distance Travelled":
+                        updateHealthData(types: [HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!])
+                    case "Steps":
+                        updateHealthData(types: [HKObjectType.quantityType(forIdentifier: .stepCount)!])
+                    case "Sleep Duration":
+                        updateHealthData(types: [HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!])
+                    default:
+                        print("\(habitName) is not a valid special habit.")
                     }
                 }
             }

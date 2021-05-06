@@ -28,6 +28,7 @@ class HabitTableViewCell: UITableViewCell {
     
     /// This function sets up the swipe gesture recognisers.
     func initialise() {
+        // set up right and left swipe gesture recognisers
         let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(gesture:)))
         swipeRightGesture.direction = UISwipeGestureRecognizer.Direction.right
@@ -36,7 +37,8 @@ class HabitTableViewCell: UITableViewCell {
         self.addGestureRecognizer(swipeLeftGesture)
     }
     
-    // Swipe action
+    /// This function handles the swipe gesture.
+    /// - parameter gesture: swipe gesture
     @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
         // animate view off screen and increment/decrement habit count accordingly
         originalCenter = self.center

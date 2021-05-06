@@ -32,12 +32,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
         super.init()
         
-        // DELETE LATER
-        /*
         if fetchAllHabits().count == 0 {
             createDefaultHabits()
         }
-        */
         
         if fetchAllHabitDates().count == 0 {
             createOneMonthOfHabitDates(startDate: Date().dateOnly())
@@ -45,10 +42,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
     }
     
-    // DELETE LATER
+    /// This function creates default habits.
     func createDefaultHabits() {
         let _ = createHabit(name: "Drink Water", type: "custom", frequencyDuration: "daily", frequency: 8, freqDescription: "Cups", colour: "DarkBlueColour")
-        let _ = createHabit(name: "Steps", type: "special", frequencyDuration: "weekly", frequency: 10000, freqDescription: "Steps", colour: "DarkGreenColour")
+        let _ = createHabit(name: "Steps", type: "special", frequencyDuration: "daily", frequency: 10000, freqDescription: "Steps", colour: "DarkGreenColour")
     }
     
     func createHabit(name: String, type: String, frequencyDuration: String, frequency: Int64, freqDescription: String, colour: String) -> Habit {
@@ -94,6 +91,8 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         deleteReminder(habit: habit)
         persistentContainer.viewContext.delete(habit)
     }
+    
+    // MARK: - Reminder methods
     
     func setReminder(habit: Habit, startTime: Date, msgDescription: String, completeMsg: String, incompleteMsg: String, frequency: Int64, count: Int64) {
         // delete the existing reminder if there already is one
@@ -184,6 +183,42 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         })
     }
     
+    // MARK: - HabitDate methods
+    
+    func createOneMonthOfHabitDates(startDate: Date) {
+        var currentDate = startDate
+        // create 35 new days - 35 was chosen as it is exactly 5 weeks
+        for _ in 1...35 {
+            let newDate = NSEntityDescription.insertNewObject(forEntityName: "HabitDate", into: persistentContainer.viewContext) as! HabitDate
+            newDate.date = currentDate
+            currentDate.addTimeInterval(60*60*24)
+        }
+        cleanup()
+        
+        // create habitData for the new days
+        let allHabits = fetchAllHabits()
+        for habit in allHabits {
+            createHabitData(habit: habit, startDate: startDate)
+        }
+    }
+    
+    // MARK: - HabitData methods
+    
+    func createHabitData(habit: Habit, startDate: Date) {
+        let habitDates = fetchAllHabitDates()
+        var count = 0
+        for date in habitDates {
+            if date.date! >= startDate {
+                count += 1
+                let habitData = NSEntityDescription.insertNewObject(forEntityName: "HabitData", into: persistentContainer.viewContext) as! HabitData
+                habitData.count = 0
+                // habitData.habit = habit
+                date.addToHabits(habitData)
+                habit.addToHabitData(habitData)
+            }
+        }
+    }
+    
     func updateHabitCount(habitData: HabitData, incrementVal: Int64) {
         // if the habit is weekly, increment/set the counts for all the habitData within the week
         if habitData.habit?.frequencyDuration == "weekly" {
@@ -193,7 +228,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             let currentDateIndex = sortedHabitDataByDates.firstIndex(of: habitData)!
             let weekDay = habitData.date!.date!.getWeekDay()
             // get the index of the first day of the week
-            let firstDayIndex = currentDateIndex - weekDay
+            let firstDayIndex = currentDateIndex - weekDay + 1
             for i in 1...7 {
                 if (firstDayIndex + i) > -1 && (firstDayIndex + i) < sortedHabitDataByDates.count {
                     if habitData.habit?.type == "custom" {
@@ -213,37 +248,7 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
     }
     
-    func createOneMonthOfHabitDates(startDate: Date) {
-        var currentDate = startDate
-        // create 35 new days - 35 was chosen as it is exactly 5 weeks
-        for _ in 1...35 {
-            let newDate = NSEntityDescription.insertNewObject(forEntityName: "HabitDate", into: persistentContainer.viewContext) as! HabitDate
-            newDate.date = currentDate
-            currentDate.addTimeInterval(60*60*24)
-        }
-        cleanup()
-        
-        // create habitData for the new days
-        let allHabits = fetchAllHabits()
-        for habit in allHabits {
-            createHabitData(habit: habit, startDate: startDate)
-        }
-    }
-    
-    func createHabitData(habit: Habit, startDate: Date) {
-        let habitDates = fetchAllHabitDates()
-        var count = 0
-        for date in habitDates {
-            if date.date! >= startDate {
-                count += 1
-                let habitData = NSEntityDescription.insertNewObject(forEntityName: "HabitData", into: persistentContainer.viewContext) as! HabitData
-                habitData.count = 0
-                // habitData.habit = habit
-                date.addToHabits(habitData)
-                habit.addToHabitData(habitData)
-            }
-        }
-    }
+    // MARK: - Fetch methods
     
     func fetchAllHabitData() -> [HabitData] {
         if allHabitDataFetchedResultsController == nil {
@@ -347,6 +352,8 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
         return nil
     }
+    
+    // MARK: - Methods related to listeners
     
     func addListener(listener: DatabaseListener) {
         listeners.addDelegate(listener)

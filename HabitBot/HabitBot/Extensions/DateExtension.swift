@@ -10,7 +10,7 @@ import Foundation
 extension Date {
 
     /// This function returns the Date object with the seconds, minutes and hours zeroed - i.e. the date object only stores the date and not the time component.
-    /// - returns: Date object that ignores the time components
+    /// - returns: Date object that ignores the time components.
     func dateOnly() -> Date
     {
         let calendar = Calendar.current
@@ -32,17 +32,23 @@ extension Date {
     }
     
     /// This function returns the minute component of the Date object.
-    /// - returns: the minute component of the Date object as an integer.
+    /// - returns: The minute component of the Date object as an integer.
     func getMinutes() -> Int {
         let calendar = Calendar.current
         return calendar.component(.minute, from: self)
     }
     
+    /// This function returns an integer which represents the day of the week.
+    /// - returns: An integer which represents the day of the week.
     func getWeekDay() -> Int {
         let calendar = Calendar(identifier: .gregorian)
         return calendar.component(.weekday, from: self)
     }
 
+    /// This function sets the time components of the Date object.
+    /// - parameter hour: Number of hours passed.
+    /// - parameter minute: Number of minutes passed.
+    /// - parameter second: Number of seconds passed.
     func setTime(hour: Int, minute: Int, second: Int) -> Date {
         let calendar = Calendar.current
 

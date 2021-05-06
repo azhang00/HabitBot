@@ -32,6 +32,7 @@
 		95EA742A262FFC8B00E3BCBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95EA7428262FFC8B00E3BCBD /* LaunchScreen.storyboard */; };
 		95EA74352630E2B300E3BCBD /* HabitsOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA74342630E2B300E3BCBD /* HabitsOverviewViewController.swift */; };
 		95EA743A2630E6B200E3BCBD /* HabitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */; };
+		95FB1B472643F45C00C680B8 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FB1B462643F45C00C680B8 /* NotificationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		95EA742B262FFC8B00E3BCBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95EA74342630E2B300E3BCBD /* HabitsOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsOverviewViewController.swift; sourceTree = "<group>"; };
 		95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitTableViewCell.swift; sourceTree = "<group>"; };
+		95FB1B462643F45C00C680B8 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +145,6 @@
 				958651ED263D63FD0004759F /* Extensions */,
 				95865190263D03680004759F /* DataModel */,
 				9586518D263D02440004759F /* Database */,
-				95EA743D2630E87100E3BCBD /* DataClasses */,
 				95EA74382630E68200E3BCBD /* CustomUI */,
 				95EA74332630E28600E3BCBD /* ViewControllers */,
 				95EA741A262FFC8900E3BCBD /* AppDelegate.swift */,
@@ -172,15 +173,9 @@
 			isa = PBXGroup;
 			children = (
 				95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */,
+				95FB1B462643F45C00C680B8 /* NotificationTableViewCell.swift */,
 			);
 			path = CustomUI;
-			sourceTree = "<group>";
-		};
-		95EA743D2630E87100E3BCBD /* DataClasses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +258,7 @@
 				95EA7425262FFC8900E3BCBD /* HabitBot.xcdatamodeld in Sources */,
 				953F2277263243CA00BA378E /* AddOrEditHabitViewController.swift in Sources */,
 				95EA743A2630E6B200E3BCBD /* HabitTableViewCell.swift in Sources */,
+				95FB1B472643F45C00C680B8 /* NotificationTableViewCell.swift in Sources */,
 				958651E0263D09A40004759F /* HabitData+CoreDataProperties.swift in Sources */,
 				958651C2263D06E80004759F /* DatabaseProtocol.swift in Sources */,
 				958651E3263D09A40004759F /* Habit+CoreDataClass.swift in Sources */,
