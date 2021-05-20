@@ -101,4 +101,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return infoCell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == SECTION_INFO {
+            if indexPath.row == 0 {
+                // navigate to the instructions view
+                let instructionsViewController = self.storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as! InstructionsViewController
+                instructionsViewController.title = "Instructions"
+                navigationController?.pushViewController(instructionsViewController, animated: true)
+            } else {
+                // navigate to the about view
+                let instructionsViewController = self.storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as! InstructionsViewController
+                navigationController?.pushViewController(instructionsViewController, animated: true)
+            }
+        }
+    }
 }

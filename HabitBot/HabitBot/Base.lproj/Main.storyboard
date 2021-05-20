@@ -764,80 +764,163 @@
             </objects>
             <point key="canvasLocation" x="3595.652173913044" y="81.696428571428569"/>
         </scene>
-        <!--Instructions-->
-        <scene sceneID="l5b-KN-QpU">
+        <!--Instructions View Controller-->
+        <scene sceneID="3kv-5I-HXD">
             <objects>
-                <viewController id="GlQ-B2-Ob4" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="B0F-4Z-g4P">
+                <viewController storyboardIdentifier="InstructionsViewController" id="aJq-bT-Pgl" customClass="InstructionsViewController" customModule="HabitBot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vg3-fe-Ybd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to add a Habit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SsS-fX-iGX">
-                                <rect key="frame" x="16" y="104" width="382" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Navigate to the Habits page and click on the + button at the top right hand corner of the screen." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EO-yW-5xs">
-                                <rect key="frame" x="16" y="141" width="382" height="36"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to edit / delete a Habit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0GD-bT-XZM">
-                                <rect key="frame" x="16" y="201" width="382" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click on habit in the Habit screen to edit / delete the habit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHo-hg-4g5">
-                                <rect key="frame" x="16" y="238" width="382" height="17"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to update a habit's progress:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xb1-pn-YNg">
-                                <rect key="frame" x="16" y="279" width="382" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r6x-Me-8Gf">
-                                <rect key="frame" x="16" y="316" width="382" height="93"/>
-                                <string key="text">In the Habit screen, swipe left on a habit to increment a habit's count by 1 and swipe right to decrement a habit's count by 1. Note that only custom habits can be edited this way; special habits will be automatically updated by syncing with Health data.</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-6O-vzA">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eyb-BM-mb9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to add a Habit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79U-rX-ruQ">
+                                                <rect key="frame" x="16" y="16" width="382" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstItem="79U-rX-ruQ" firstAttribute="top" secondItem="Eyb-BM-mb9" secondAttribute="top" constant="16" id="E3J-4p-mPn"/>
+                                            <constraint firstAttribute="bottom" secondItem="79U-rX-ruQ" secondAttribute="bottom" constant="16" id="Gm0-1X-5rl"/>
+                                            <constraint firstAttribute="height" constant="50" id="SdG-vS-HdL"/>
+                                            <constraint firstAttribute="trailing" secondItem="79U-rX-ruQ" secondAttribute="trailing" constant="16" id="qh4-dp-cu6"/>
+                                            <constraint firstItem="79U-rX-ruQ" firstAttribute="leading" secondItem="Eyb-BM-mb9" secondAttribute="leading" constant="16" id="xy0-Ld-3sj"/>
+                                        </constraints>
+                                    </view>
+                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-6L-Zow">
+                                        <rect key="frame" x="0.0" y="50" width="414" height="90"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Navigate to the Habits page and click on the + button at the top right hand corner of the screen." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hza-Gh-jOT">
+                                                <rect key="frame" x="16" y="16" width="382" height="58"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
+                                        <constraints>
+                                            <constraint firstItem="hza-Gh-jOT" firstAttribute="top" secondItem="6ig-6L-Zow" secondAttribute="top" constant="16" id="MmM-yz-54c"/>
+                                            <constraint firstAttribute="bottom" secondItem="hza-Gh-jOT" secondAttribute="bottom" constant="16" id="bOW-fF-Pb4"/>
+                                            <constraint firstItem="hza-Gh-jOT" firstAttribute="leading" secondItem="6ig-6L-Zow" secondAttribute="leading" constant="16" id="fJ7-eU-t6z"/>
+                                            <constraint firstAttribute="height" constant="90" id="flp-ey-Bq4"/>
+                                            <constraint firstAttribute="trailing" secondItem="hza-Gh-jOT" secondAttribute="trailing" constant="16" id="ypi-YQ-ECH"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oes-f6-oaI">
+                                        <rect key="frame" x="0.0" y="140" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to edit / delete a Habit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9T-Ie-CCa">
+                                                <rect key="frame" x="16" y="16" width="382" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="G55-GX-Y46"/>
+                                            <constraint firstAttribute="bottom" secondItem="U9T-Ie-CCa" secondAttribute="bottom" constant="16" id="HJ5-Ud-W5x"/>
+                                            <constraint firstItem="U9T-Ie-CCa" firstAttribute="top" secondItem="Oes-f6-oaI" secondAttribute="top" constant="16" id="d77-wD-HcF"/>
+                                            <constraint firstAttribute="trailing" secondItem="U9T-Ie-CCa" secondAttribute="trailing" constant="16" id="mQt-dv-Mwa"/>
+                                            <constraint firstItem="U9T-Ie-CCa" firstAttribute="leading" secondItem="Oes-f6-oaI" secondAttribute="leading" constant="16" id="uv2-6H-aPd"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dZZ-GG-Jdu">
+                                        <rect key="frame" x="0.0" y="190" width="414" height="83"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Click on habit in the Habit screen to edit / delete the habit." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FQ6-Yh-nZD">
+                                                <rect key="frame" x="16" y="16" width="382" height="51"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="FQ6-Yh-nZD" secondAttribute="trailing" constant="16" id="IUN-9t-nd7"/>
+                                            <constraint firstItem="FQ6-Yh-nZD" firstAttribute="leading" secondItem="dZZ-GG-Jdu" secondAttribute="leading" constant="16" id="hl7-fc-lbD"/>
+                                            <constraint firstAttribute="height" constant="83" id="nzK-Ue-2t7"/>
+                                            <constraint firstItem="FQ6-Yh-nZD" firstAttribute="top" secondItem="dZZ-GG-Jdu" secondAttribute="top" constant="16" id="qsX-Qc-WJN"/>
+                                            <constraint firstAttribute="bottom" secondItem="FQ6-Yh-nZD" secondAttribute="bottom" constant="16" id="wFp-Mj-Ujx"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNM-gF-cwe">
+                                        <rect key="frame" x="0.0" y="273" width="414" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to update a habit's progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wca-j3-xMm">
+                                                <rect key="frame" x="16" y="16" width="382" height="18"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="PurpleColour"/>
+                                        <constraints>
+                                            <constraint firstItem="wca-j3-xMm" firstAttribute="leading" secondItem="BNM-gF-cwe" secondAttribute="leading" constant="16" id="6RD-Nd-XOQ"/>
+                                            <constraint firstAttribute="height" constant="50" id="Ibs-af-Z0g"/>
+                                            <constraint firstAttribute="trailing" secondItem="wca-j3-xMm" secondAttribute="trailing" constant="16" id="Qw0-kx-LB4"/>
+                                            <constraint firstItem="wca-j3-xMm" firstAttribute="top" secondItem="BNM-gF-cwe" secondAttribute="top" constant="16" id="iyl-61-6cd"/>
+                                            <constraint firstAttribute="bottom" secondItem="wca-j3-xMm" secondAttribute="bottom" constant="16" id="lqN-M5-c4s"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdF-N2-iY4">
+                                        <rect key="frame" x="0.0" y="323" width="414" height="495"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaA-pJ-MbT">
+                                                <rect key="frame" x="16" y="16" width="382" height="463"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <string key="text">In the Habit screen, swipe left on a habit to increment a habit's count by 1 and swipe right to decrement a habit's count by 1. Note that only custom habits can be edited this way; special habits will be automatically updated by syncing with Health data.</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="WaA-pJ-MbT" secondAttribute="bottom" constant="16" id="4T3-Go-IWY"/>
+                                            <constraint firstAttribute="trailing" secondItem="WaA-pJ-MbT" secondAttribute="trailing" constant="16" id="9MQ-Y2-FaM"/>
+                                            <constraint firstItem="WaA-pJ-MbT" firstAttribute="leading" secondItem="bdF-N2-iY4" secondAttribute="leading" constant="16" id="fx3-0W-uca"/>
+                                            <constraint firstItem="WaA-pJ-MbT" firstAttribute="top" secondItem="bdF-N2-iY4" secondAttribute="top" constant="16" id="kF0-Lb-T2R"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="bdF-N2-iY4" firstAttribute="top" secondItem="BNM-gF-cwe" secondAttribute="bottom" id="0He-22-TWx"/>
+                                    <constraint firstItem="Eyb-BM-mb9" firstAttribute="top" secondItem="Bvd-6O-vzA" secondAttribute="top" id="HAS-An-2n1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eyb-BM-mb9" secondAttribute="trailing" id="au8-hq-C3X"/>
+                                    <constraint firstItem="Oes-f6-oaI" firstAttribute="top" secondItem="6ig-6L-Zow" secondAttribute="bottom" id="cBk-jh-Bo8"/>
+                                    <constraint firstItem="6ig-6L-Zow" firstAttribute="top" secondItem="Eyb-BM-mb9" secondAttribute="bottom" id="fRV-IT-iuq"/>
+                                    <constraint firstItem="dZZ-GG-Jdu" firstAttribute="top" secondItem="Oes-f6-oaI" secondAttribute="bottom" id="i1a-DR-lxj"/>
+                                    <constraint firstItem="Eyb-BM-mb9" firstAttribute="leading" secondItem="Bvd-6O-vzA" secondAttribute="leading" id="l8G-QV-hTG"/>
+                                    <constraint firstItem="BNM-gF-cwe" firstAttribute="top" secondItem="dZZ-GG-Jdu" secondAttribute="bottom" id="nFU-RE-mxo"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="7cZ-v5-4iY"/>
+                        <viewLayoutGuide key="safeArea" id="BIn-YK-Xot"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="SsS-fX-iGX" secondAttribute="trailing" constant="16" id="4I3-WW-MkM"/>
-                            <constraint firstItem="xb1-pn-YNg" firstAttribute="top" secondItem="cHo-hg-4g5" secondAttribute="bottom" constant="24" id="6ag-mr-Mdz"/>
-                            <constraint firstItem="SsS-fX-iGX" firstAttribute="top" secondItem="7cZ-v5-4iY" secondAttribute="top" constant="16" id="6vV-0n-pLB"/>
-                            <constraint firstItem="4EO-yW-5xs" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="7MX-e7-uYF"/>
-                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="4EO-yW-5xs" secondAttribute="trailing" constant="16" id="N8G-c1-cIW"/>
-                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="xb1-pn-YNg" secondAttribute="trailing" constant="16" id="N8x-qq-gCk"/>
-                            <constraint firstItem="xb1-pn-YNg" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="Ofa-J1-OdH"/>
-                            <constraint firstItem="0GD-bT-XZM" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="Prd-Xa-OfJ"/>
-                            <constraint firstItem="cHo-hg-4g5" firstAttribute="top" secondItem="0GD-bT-XZM" secondAttribute="bottom" constant="16" id="WDS-kV-XIq"/>
-                            <constraint firstAttribute="trailing" secondItem="r6x-Me-8Gf" secondAttribute="trailing" constant="16" id="Xii-MC-2JC"/>
-                            <constraint firstItem="r6x-Me-8Gf" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="boT-GI-Y7L"/>
-                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="cHo-hg-4g5" secondAttribute="trailing" constant="16" id="djC-tz-QzY"/>
-                            <constraint firstItem="0GD-bT-XZM" firstAttribute="top" secondItem="4EO-yW-5xs" secondAttribute="bottom" constant="24" id="dwP-7H-0kq"/>
-                            <constraint firstItem="r6x-Me-8Gf" firstAttribute="top" secondItem="xb1-pn-YNg" secondAttribute="bottom" constant="16" id="ff3-4S-q1p"/>
-                            <constraint firstItem="cHo-hg-4g5" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="hEA-WK-0xb"/>
-                            <constraint firstItem="SsS-fX-iGX" firstAttribute="leading" secondItem="7cZ-v5-4iY" secondAttribute="leading" constant="16" id="rh2-J5-aem"/>
-                            <constraint firstItem="4EO-yW-5xs" firstAttribute="top" secondItem="SsS-fX-iGX" secondAttribute="bottom" constant="16" id="uU5-4z-FBg"/>
-                            <constraint firstItem="7cZ-v5-4iY" firstAttribute="trailing" secondItem="0GD-bT-XZM" secondAttribute="trailing" constant="16" id="yOv-No-o6i"/>
+                            <constraint firstItem="Bvd-6O-vzA" firstAttribute="leading" secondItem="BIn-YK-Xot" secondAttribute="leading" id="CL9-Ow-hmz"/>
+                            <constraint firstItem="Bvd-6O-vzA" firstAttribute="top" secondItem="BIn-YK-Xot" secondAttribute="top" id="LMQ-Kc-NSQ"/>
+                            <constraint firstItem="Bvd-6O-vzA" firstAttribute="bottom" secondItem="BIn-YK-Xot" secondAttribute="bottom" id="V2t-6x-cCO"/>
+                            <constraint firstItem="Bvd-6O-vzA" firstAttribute="trailing" secondItem="BIn-YK-Xot" secondAttribute="trailing" id="eKC-j7-YhK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Instructions" id="co1-7Z-Ez9"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ccs-LI-35r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJl-pB-OBJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-786.95652173913049" y="81.696428571428569"/>
+            <point key="canvasLocation" x="-4" y="807"/>
         </scene>
         <!--Settings-->
         <scene sceneID="8ZR-Kj-pWf">
@@ -900,9 +983,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="GlQ-B2-Ob4" kind="show" id="ApU-XD-Nd8"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -974,11 +1054,17 @@
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="list.star" catalog="system" width="128" height="94"/>
         <namedColor name="AccentColor">
-            <color red="0.8529999852180481" green="0.37299999594688416" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.65700000520000001" green="0.57800000910000005" blue="0.89399999379999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="PurpleColour">
+            <color red="0.65700000524520874" green="0.57800000905990601" blue="0.89399999380111694" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="RedColour">
             <color red="0.8529999852180481" green="0.37299999594688416" blue="0.40000000596046448" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
