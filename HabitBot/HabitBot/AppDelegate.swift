@@ -45,8 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 BGTaskScheduler.shared.register(forTaskWithIdentifier: self.TASK_IDENTIFIER, using: nil) { task in
                     self.handleQuoteNotificationBGTask(task: task as! BGAppRefreshTask)
                 }
-                //self.scheduleQuoteNotification()
-                self.sendDailyQuoteNotification()
+                self.scheduleQuoteNotification()
             }
         })
         

@@ -6,6 +6,7 @@ target 'HabitBot' do
   use_frameworks!
 
   # Pods for HabitBot
+  pod 'TextFieldEffects'
   pod 'Charts'
 
 end

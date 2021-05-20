@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -18,25 +19,25 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     var selectedColourIndex = 0
 
     @IBOutlet weak var habitNameLabel: UILabel!
-    @IBOutlet weak var habitName: UITextField!
+    @IBOutlet weak var habitName: IsaoTextField!
     @IBOutlet weak var habitType: UISegmentedControl!
     @IBOutlet weak var specialHabitTitle: UILabel!
-    @IBOutlet weak var specialHabit: UITextField!
+    @IBOutlet weak var specialHabit: IsaoTextField!
     
     @IBOutlet weak var frequencyDuration: UISegmentedControl!
     @IBOutlet weak var frequencyLabel: UILabel!
-    @IBOutlet weak var frequencyCount: UITextField!
-    @IBOutlet weak var frequencyDescription: UITextField!
+    @IBOutlet weak var frequencyCount: IsaoTextField!
+    @IBOutlet weak var frequencyDescription: IsaoTextField!
     
     @IBOutlet weak var colourCollectionView: UICollectionView!
     
     @IBOutlet weak var reminderView: UIView!
-    @IBOutlet weak var reminderDescription: UITextField!
-    @IBOutlet weak var completedTaskMessage: UITextField!
-    @IBOutlet weak var incompleteTaskMessage: UITextField!
-    @IBOutlet weak var notificationCount: UITextField!
-    @IBOutlet weak var notificationFrequency: UITextField!
-    @IBOutlet weak var notificationStartTime: UITextField!
+    @IBOutlet weak var reminderDescription: IsaoTextField!
+    @IBOutlet weak var completedTaskMessage: IsaoTextField!
+    @IBOutlet weak var incompleteTaskMessage: IsaoTextField!
+    @IBOutlet weak var notificationCount: IsaoTextField!
+    @IBOutlet weak var notificationFrequency: IsaoTextField!
+    @IBOutlet weak var notificationStartTime: IsaoTextField!
     @IBOutlet weak var deleteHabitButton: UIButton!
     @IBOutlet weak var reminderSwitch: UISwitch!
     
@@ -256,6 +257,15 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBAction func toggleReminder(_ sender: UISwitch) {
         if sender.isOn {
             reminderView.isHidden = false
+            
+            // there's a bug with IsaoTextField where the underline and placeholder
+            // text doesn't appear so I've redrawn the display
+            reminderDescription.setNeedsDisplay()
+            completedTaskMessage.setNeedsDisplay()
+            incompleteTaskMessage.setNeedsDisplay()
+            notificationCount.setNeedsDisplay()
+            notificationFrequency.setNeedsDisplay()
+            notificationStartTime.setNeedsDisplay()
         } else {
             reminderView.isHidden = true
         }
