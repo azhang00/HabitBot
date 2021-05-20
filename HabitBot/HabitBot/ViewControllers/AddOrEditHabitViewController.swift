@@ -73,7 +73,9 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         // we want to get the Habit in the child context so that any changes the user makes
         // does not get saved to persistent storage before they click the Save button
-        editedHabit = databaseController?.getChildContextHabit(habit: existingHabit)
+        if existingHabit != nil {
+            editedHabit = databaseController?.getChildContextHabit(habit: existingHabit!)
+        }
         
         // populate the view with the existing habit's data
         if existingHabit != nil {
@@ -265,50 +267,58 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         var missingData = false
         var errorMsg = "Please populate the following fields:"
         
+        var editedHabitName: String?
+        var editedHabitType: String?
+        var editedHabitFreqDuration: String?
+        var editedHabitFrequency: Int64?
+        var editedHabitFreqDescription: String?
+        var reminderFrequency, reminderCount: Int64?
+        var notifStartTime: Date?
+        
         // check whether data fields are missing information
         if habitType.selectedSegmentIndex == 0 {
             if let name = habitName.text, !name.isEmpty {
-                editedHabit!.name = name
-                editedHabit!.type = "custom"
+                editedHabitName = name
+                editedHabitType = "custom"
             } else {
                 errorMsg += "\n- Habit name"
                 missingData = true
             }
         } else {
             if let name = specialHabit.text, !name.isEmpty {
-                editedHabit!.name = name
-                editedHabit!.type = "special"
+                editedHabitName = name
+                editedHabitType = "special"
             } else {
                 errorMsg += "\n- Habit name"
                 missingData = true
             }
         }
         
-        // set frequency duration
+        // get frequency duration
         if frequencyDuration.selectedSegmentIndex == 0 {
-            editedHabit!.frequencyDuration = "daily"
+            editedHabitFreqDuration = "daily"
         } else {
-            editedHabit!.frequencyDuration = "weekly"
+            editedHabitFreqDuration = "weekly"
         }
         
         // check frequency data
         if let frequency = frequencyCount.text, let count = Int(frequency) {
-            editedHabit!.frequency = Int64(count)
+            editedHabitFrequency = Int64(count)
         } else {
             errorMsg += "\n- Frequency count"
             missingData = true
         }
         if let freqDescription = frequencyDescription.text, !freqDescription.isEmpty {
-            editedHabit!.freqDescription = freqDescription
+            editedHabitFreqDescription = freqDescription
         } else {
             errorMsg += "\n- Frequency description"
             missingData = true
         }
         
-        // set colour
-        editedHabit?.colour = colours[selectedColourIndex]
+        // get colour
+        let editedHabitColour = colours[selectedColourIndex]
         
-        // save reminder if reminders is toggled on
+        // check reminder info if reminders is toggled on
         if !reminderView.isHidden {
             // check that reminder fields are filled
             if let reminderDesc = reminderDescription.text, reminderDesc.isEmpty {
@@ -326,7 +336,6 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 missingData = true
             }
             
-            var reminderFrequency, reminderCount: Int64?
             if let reminderFreqText = notificationFrequency.text, let _ = Int64(reminderFreqText) {
                 reminderFrequency = Int64(reminderFreqText)
             } else {
@@ -341,7 +350,6 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 missingData = true
             }
             
-            var notifStartTime: Date?
             if let startTimeText = notificationStartTime.text, startTimeText.isEmpty {
                 errorMsg += "\n- Reminder start time"
                 missingData = true
@@ -354,25 +362,39 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 
                 notifStartTime = calendar.date(from: components)
             }
-            
-            // save the reminder if there isn't any missing data
-            if !missingData {
-                databaseController?.setReminder(habit: editedHabit!, startTime: notifStartTime!, msgDescription: reminderDescription.text!, completeMsg: completedTaskMessage.text!, incompleteMsg: incompleteTaskMessage.text!, frequency: reminderFrequency!, count: reminderCount!)
-            }
         } else {
-            // delete the reminder if reminders is toggled off
-            databaseController?.deleteReminder(habit: editedHabit!)
+            // delete the reminder if reminders is toggled off for existing habits
+            if existingHabit != nil {
+                databaseController?.deleteReminder(habit: existingHabit!)
+            }
         }
         
         // show alert if there are fields missing data
         if missingData {
             displayErrorMessage(title: "Missing Data", message: errorMsg)
         } else {
-            // save the habit and return back to the previous view
-            if existingHabit == nil {
-                let _ = databaseController?.createHabit(name: editedHabit!.name!, type: editedHabit!.type!, frequencyDuration: editedHabit!.frequencyDuration!, frequency: editedHabit!.frequency, freqDescription: editedHabit!.freqDescription!, colour: editedHabit!.colour!)
+            // save existing habit
+            if editedHabit != nil {
+                editedHabit!.name = editedHabitName
+                editedHabit!.type = editedHabitType
+                editedHabit!.frequencyDuration = editedHabitFreqDuration
+                editedHabit!.frequency = editedHabitFrequency!
+                editedHabit!.freqDescription = editedHabitFreqDescription
+                editedHabit!.colour = editedHabitColour
+                
+                if !reminderView.isHidden {
+                    databaseController?.setReminder(habit: editedHabit!, startTime: notifStartTime!, msgDescription: reminderDescription.text!, completeMsg: completedTaskMessage.text!, incompleteMsg: incompleteTaskMessage.text!, frequency: reminderFrequency!, count: reminderCount!)
+                }
+                databaseController?.saveHabitEdit(habit: editedHabit!)
+            } else {
+                // create new habit
+                let newHabit = databaseController?.createHabit(name: editedHabitName!, type: editedHabitType!, frequencyDuration: editedHabitFreqDuration!, frequency: editedHabitFrequency!, freqDescription: editedHabitFreqDescription!, colour: editedHabitColour)
+                
+                if !reminderView.isHidden {
+                    databaseController?.setReminder(habit: newHabit!, startTime: notifStartTime!, msgDescription: reminderDescription.text!, completeMsg: completedTaskMessage.text!, incompleteMsg: incompleteTaskMessage.text!, frequency: reminderFrequency!, count: reminderCount!)
+                }
             }
-            databaseController?.saveHabitEdit(habit: editedHabit!)
+            // return back to the previous view
             navigationController?.popViewController(animated: true)
         }
     }

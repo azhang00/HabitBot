@@ -52,7 +52,7 @@ protocol DatabaseProtocol: AnyObject {
     /// This function creates a copy of the habit in the child context and returns it.
     /// - parameter habit: habit to be copied
     /// - returns: a copy of the habit in the child context
-    func getChildContextHabit(habit: Habit?) -> Habit
+    func getChildContextHabit(habit: Habit) -> Habit
     
     /// This function saves any changes made to the habit.
     /// - parameter habit: habit to be saved

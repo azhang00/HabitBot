@@ -67,17 +67,13 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         return habit
     }
     
-    func getChildContextHabit(habit: Habit?) -> Habit {
+    func getChildContextHabit(habit: Habit) -> Habit {
         // delete any Habit objects that may have been created in the child context
         childContext?.reset()
         
         // if a Habit object is not provided, create a new child context Habit
-        if habit != nil {
-            let childContextHabit = childContext?.object(with: habit!.objectID) as! Habit
-            return childContextHabit
-        }
-        // Habit object is provided so a copy of it is made in the child context
-        return NSEntityDescription.insertNewObject(forEntityName: "Habit", into: childContext!) as! Habit
+        let childContextHabit = childContext?.object(with: habit.objectID) as! Habit
+        return childContextHabit
     }
     
     func saveHabitEdit(habit: Habit) {

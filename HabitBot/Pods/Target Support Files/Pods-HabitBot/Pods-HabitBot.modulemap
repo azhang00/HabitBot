@@ -1,0 +1,6 @@
+framework module Pods_HabitBot {
+  umbrella header "Pods-HabitBot-umbrella.h"
+
+  export *
+  module * { export * }
+}
