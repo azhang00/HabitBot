@@ -110,8 +110,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 navigationController?.pushViewController(instructionsViewController, animated: true)
             } else {
                 // navigate to the about view
-                let instructionsViewController = self.storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as! InstructionsViewController
-                navigationController?.pushViewController(instructionsViewController, animated: true)
+                let aboutViewController = self.storyboard?.instantiateViewController(withIdentifier: "AboutViewController") as! AboutViewController
+                aboutViewController.title = "About"
+                navigationController?.pushViewController(aboutViewController, animated: true)
             }
         }
     }

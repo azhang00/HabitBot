@@ -29,6 +29,7 @@
 		95B77F6826564CD60055BAE2 /* UserSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B77F6626564CD60055BAE2 /* UserSettings+CoreDataClass.swift */; };
 		95B77F6926564CD60055BAE2 /* UserSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B77F6726564CD60055BAE2 /* UserSettings+CoreDataProperties.swift */; };
 		95B77F6B265672920055BAE2 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B77F6A265672920055BAE2 /* InstructionsViewController.swift */; };
+		95B77F6D265679B50055BAE2 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B77F6C265679B50055BAE2 /* AboutViewController.swift */; };
 		95B8EAEE2654EE4C00BD63BF /* SummaryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8EAED2654EE4C00BD63BF /* SummaryTableViewController.swift */; };
 		95B8EAF02654F18200BD63BF /* SummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B8EAEF2654F18200BD63BF /* SummaryTableViewCell.swift */; };
 		95E3996826410D4400EA4032 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95E3996726410D4400EA4032 /* HealthKit.framework */; };
@@ -69,6 +70,7 @@
 		95B77F6626564CD60055BAE2 /* UserSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataClass.swift"; sourceTree = "<group>"; };
 		95B77F6726564CD60055BAE2 /* UserSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserSettings+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		95B77F6A265672920055BAE2 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		95B77F6C265679B50055BAE2 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		95B8EAED2654EE4C00BD63BF /* SummaryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewController.swift; sourceTree = "<group>"; };
 		95B8EAEF2654F18200BD63BF /* SummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryTableViewCell.swift; sourceTree = "<group>"; };
 		95E3996726410D4400EA4032 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -211,6 +213,7 @@
 				95B8EAED2654EE4C00BD63BF /* SummaryTableViewController.swift */,
 				9519C90E2654FBD100569A9C /* HabitSummaryViewController.swift */,
 				95B77F6A265672920055BAE2 /* InstructionsViewController.swift */,
+				95B77F6C265679B50055BAE2 /* AboutViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				958651DF263D09A40004759F /* HabitData+CoreDataClass.swift in Sources */,
 				958651E5263D09A40004759F /* HabitDate+CoreDataClass.swift in Sources */,
 				95EA741B262FFC8900E3BCBD /* AppDelegate.swift in Sources */,
+				95B77F6D265679B50055BAE2 /* AboutViewController.swift in Sources */,
 				95636E312655412500C42941 /* StringExtension.swift in Sources */,
 				953F2274263243AE00BA378E /* SettingsViewController.swift in Sources */,
 				95B8EAF02654F18200BD63BF /* SummaryTableViewCell.swift in Sources */,
