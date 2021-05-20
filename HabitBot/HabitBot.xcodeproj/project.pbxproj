@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9519C90F2654FBD100569A9C /* HabitSummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9519C90E2654FBD100569A9C /* HabitSummaryViewController.swift */; };
+		9536F80826571D4900FE2C89 /* IsaoTextFieldSpecial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9536F80726571D4900FE2C89 /* IsaoTextFieldSpecial.swift */; };
 		953F2274263243AE00BA378E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F2273263243AE00BA378E /* SettingsViewController.swift */; };
 		953F2277263243CA00BA378E /* AddOrEditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953F2276263243CA00BA378E /* AddOrEditHabitViewController.swift */; };
 		95636E312655412500C42941 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95636E302655412500C42941 /* StringExtension.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		062196BF8507612C429CA9E2 /* Pods_HabitBot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitBot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9519C90E2654FBD100569A9C /* HabitSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSummaryViewController.swift; sourceTree = "<group>"; };
+		9536F80726571D4900FE2C89 /* IsaoTextFieldSpecial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsaoTextFieldSpecial.swift; sourceTree = "<group>"; };
 		953F2273263243AE00BA378E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		953F2276263243CA00BA378E /* AddOrEditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditHabitViewController.swift; sourceTree = "<group>"; };
 		954148CD263E849100C50C86 /* HabitBot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HabitBot.entitlements; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 		95EA74382630E68200E3BCBD /* CustomUI */ = {
 			isa = PBXGroup;
 			children = (
+				9536F80726571D4900FE2C89 /* IsaoTextFieldSpecial.swift */,
 				95EA74392630E6B200E3BCBD /* HabitTableViewCell.swift */,
 				95FB1B462643F45C00C680B8 /* NotificationTableViewCell.swift */,
 				95B8EAEF2654F18200BD63BF /* SummaryTableViewCell.swift */,
@@ -352,6 +355,7 @@
 				958651E5263D09A40004759F /* HabitDate+CoreDataClass.swift in Sources */,
 				95EA741B262FFC8900E3BCBD /* AppDelegate.swift in Sources */,
 				95B77F6D265679B50055BAE2 /* AboutViewController.swift in Sources */,
+				9536F80826571D4900FE2C89 /* IsaoTextFieldSpecial.swift in Sources */,
 				95636E312655412500C42941 /* StringExtension.swift in Sources */,
 				953F2274263243AE00BA378E /* SettingsViewController.swift in Sources */,
 				95B8EAF02654F18200BD63BF /* SummaryTableViewCell.swift in Sources */,

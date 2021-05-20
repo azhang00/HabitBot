@@ -115,6 +115,9 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HH:mm"
                 notificationStartTime.text = formatter.string(from: (existingHabit?.reminder?.startTime)!)
+            } else {
+                reminderView.isHidden = true
+                reminderSwitch.isOn = false
             }
             selectedColourIndex = colours.firstIndex(of: (existingHabit?.colour)!)!
             frequencyCount.text = "\(existingHabit?.frequency ?? 1)"

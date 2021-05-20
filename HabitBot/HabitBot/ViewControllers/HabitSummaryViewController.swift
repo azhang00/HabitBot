@@ -109,8 +109,8 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
                 entries.append(BarChartDataEntry(x: Double(i), y: Double(habitData.count)))
             }
             
-            // stop appending data if the date is beyond today's date
-            if habitData.date!.date! == Date().dateOnly() {
+            // date display limit: 7 days from today
+            if habitData.date!.date! == Date().dateOnly().addingTimeInterval(60*60*24*7) {
                 break
             }
             i += 1

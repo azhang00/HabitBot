@@ -70,6 +70,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="ICY-hs-dsU" secondAttribute="trailing" constant="16" id="I4t-dE-CZQ"/>
                                                         <constraint firstItem="AmF-9K-ztC" firstAttribute="leading" secondItem="KnU-qD-YAM" secondAttribute="leading" constant="16" id="Khu-Tv-rHk"/>
                                                         <constraint firstItem="ICY-hs-dsU" firstAttribute="centerY" secondItem="KnU-qD-YAM" secondAttribute="centerY" id="QDj-aS-LaJ"/>
+                                                        <constraint firstItem="ICY-hs-dsU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AmF-9K-ztC" secondAttribute="trailing" constant="16" id="iIa-5Y-R2D"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -169,9 +170,9 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="1029"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCR-Vp-dAy">
-                                        <rect key="frame" x="16" y="-2" width="382" height="601.5"/>
+                                        <rect key="frame" x="16" y="-2" width="382" height="1078.5"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Times, Cups" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfQ-cO-dnj" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Times, Cups" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfQ-cO-dnj" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="332" width="350" height="22"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -190,7 +191,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select habit" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxo-57-9pc" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap to select habit" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxo-57-9pc" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="136" width="350" height="22"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -225,7 +226,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter habit name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qZn-zZ-ETX" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter habit name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qZn-zZ-ETX" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="136" width="350" height="22"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -254,10 +255,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVE-Jp-zu0">
-                                                <rect key="frame" x="16" y="482.5" width="245" height="20.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="245" id="5Tj-Rg-1B1"/>
-                                                </constraints>
+                                                <rect key="frame" x="16" y="482.5" width="285" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -328,7 +326,7 @@
                                                     <action selector="selectFrequency:" destination="w0Q-Ra-7aL" eventType="valueChanged" id="FQU-KN-lxK"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4zP-3q-OR8" customClass="IsaoTextField" customModule="TextFieldEffects">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4zP-3q-OR8" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
                                                 <rect key="frame" x="180" y="257.5" width="186" height="22"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -349,19 +347,19 @@
                                                 </connections>
                                             </switch>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7cr-Gc-7pY">
-                                                <rect key="frame" x="16" y="524.5" width="350" height="0.0"/>
+                                                <rect key="frame" x="16" y="524.5" width="350" height="477"/>
                                                 <subviews>
-                                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgf-Ao-OIt">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="176"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgf-Ao-OIt">
+                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="477"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7I-JP-ZDe">
-                                                                <rect key="frame" x="0.0" y="16" width="350" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="16" width="350" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Have you drank one cup of water?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-qd-POS" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="32" width="350" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Have you drank one cup of water?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-qd-POS" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="52.5" width="350" height="109"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -374,13 +372,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed Task Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sb1-ld-IPu">
-                                                                <rect key="frame" x="0.0" y="48" width="350" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="177.5" width="350" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Yes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-mk-MRi" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="64" width="350" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. Yes" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="B4u-mk-MRi" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="214" width="350" height="22"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -393,13 +391,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Imcomplete Task Message:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJ9-uc-AgM">
-                                                                <rect key="frame" x="0.0" y="80" width="350" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="252" width="350" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. No" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-Op-oxb" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="96" width="350" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. No" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MBi-Op-oxb" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="288.5" width="350" height="22"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -411,8 +409,8 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="1" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pce-QM-ccy" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="112" width="54" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. 1" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pce-QM-ccy" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="326.5" width="54" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="FnF-SR-UUH"/>
                                                                 </constraints>
@@ -428,13 +426,13 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification(s) every" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UO-aa-qfA">
-                                                                <rect key="frame" x="70" y="112" width="154.5" height="20.5"/>
+                                                                <rect key="frame" x="70" y="326.5" width="264" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="2" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4V1-ww-jZR" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="128" width="54" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. 2" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4V1-ww-jZR" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="364.5" width="54" height="22"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="54" id="kQ9-Ny-wgh"/>
                                                                 </constraints>
@@ -450,19 +448,19 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hour(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bud-T1-0k7">
-                                                                <rect key="frame" x="70" y="148.5" width="58" height="20.5"/>
+                                                                <rect key="frame" x="70" y="364.5" width="264" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start at:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35l-Dy-9ME">
-                                                                <rect key="frame" x="0.0" y="144" width="334" height="0.0"/>
+                                                                <rect key="frame" x="0.0" y="402.5" width="334" height="20.5"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Time" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-WW-qtP" customClass="IsaoTextField" customModule="TextFieldEffects">
-                                                                <rect key="frame" x="0.0" y="160" width="334" height="0.0"/>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Time" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5rf-WW-qtP" customClass="IsaoTextFieldSpecial" customModule="HabitBot" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="439" width="334" height="22"/>
                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="continue"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -487,6 +485,7 @@
                                                             <constraint firstItem="1UO-aa-qfA" firstAttribute="leading" secondItem="pce-QM-ccy" secondAttribute="trailing" constant="16" id="DP1-RV-jhS"/>
                                                             <constraint firstItem="35l-Dy-9ME" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="DvP-RP-Z1a"/>
                                                             <constraint firstItem="Sb1-ld-IPu" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="FDA-sc-NZE"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Bud-T1-0k7" secondAttribute="trailing" constant="16" id="Fnw-2d-wEU"/>
                                                             <constraint firstItem="4V1-ww-jZR" firstAttribute="top" secondItem="pce-QM-ccy" secondAttribute="bottom" constant="16" id="HDY-m4-GoK"/>
                                                             <constraint firstItem="iJ9-uc-AgM" firstAttribute="top" secondItem="B4u-mk-MRi" secondAttribute="bottom" constant="16" id="IZe-St-2jM"/>
                                                             <constraint firstAttribute="trailing" secondItem="Sb1-ld-IPu" secondAttribute="trailing" id="JL5-4a-Yny"/>
@@ -500,22 +499,23 @@
                                                             <constraint firstAttribute="trailing" secondItem="MBi-Op-oxb" secondAttribute="trailing" id="ZqE-oQ-fjc"/>
                                                             <constraint firstItem="YhA-qd-POS" firstAttribute="top" secondItem="a7I-JP-ZDe" secondAttribute="bottom" constant="16" id="axj-Li-lAo"/>
                                                             <constraint firstItem="MBi-Op-oxb" firstAttribute="top" secondItem="iJ9-uc-AgM" secondAttribute="bottom" constant="16" id="dJJ-h9-0Hn"/>
+                                                            <constraint firstAttribute="trailing" secondItem="1UO-aa-qfA" secondAttribute="trailing" constant="16" id="hfI-L4-BcP"/>
                                                             <constraint firstAttribute="trailing" secondItem="B4u-mk-MRi" secondAttribute="trailing" id="iMM-wT-2De"/>
                                                             <constraint firstItem="4V1-ww-jZR" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="lnd-Aw-Ah3"/>
                                                             <constraint firstItem="YhA-qd-POS" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="nzX-zm-UFG"/>
                                                             <constraint firstItem="B4u-mk-MRi" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="ppM-eL-N77"/>
+                                                            <constraint firstItem="Bud-T1-0k7" firstAttribute="top" secondItem="pce-QM-ccy" secondAttribute="bottom" constant="16" id="qeB-sP-fXm"/>
                                                             <constraint firstAttribute="trailing" secondItem="YhA-qd-POS" secondAttribute="trailing" id="rCo-j6-oeA"/>
                                                             <constraint firstItem="5rf-WW-qtP" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="rX3-CW-N0f"/>
                                                             <constraint firstItem="5rf-WW-qtP" firstAttribute="top" secondItem="35l-Dy-9ME" secondAttribute="bottom" constant="16" id="rlM-46-BCU"/>
                                                             <constraint firstItem="MBi-Op-oxb" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="upu-8x-bUX"/>
-                                                            <constraint firstItem="Bud-T1-0k7" firstAttribute="top" secondItem="1UO-aa-qfA" secondAttribute="bottom" constant="16" id="z09-Ta-DBi"/>
                                                             <constraint firstItem="pce-QM-ccy" firstAttribute="leading" secondItem="dgf-Ao-OIt" secondAttribute="leading" id="zmj-Dy-QZy"/>
                                                         </constraints>
                                                     </view>
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DW5-SV-ZBG">
-                                                <rect key="frame" x="16" y="536.5" width="350" height="33"/>
+                                                <rect key="frame" x="16" y="1013.5" width="350" height="33"/>
                                                 <color key="backgroundColor" name="RedColour"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -545,6 +545,7 @@
                                             <constraint firstItem="SFY-Rx-kmz" firstAttribute="top" secondItem="ZnR-Ks-qM5" secondAttribute="bottom" constant="16" id="52J-RZ-1Xi"/>
                                             <constraint firstItem="htc-15-IWw" firstAttribute="leading" secondItem="bCR-Vp-dAy" secondAttribute="leading" constant="16" id="6gx-04-Gjw"/>
                                             <constraint firstItem="ZnR-Ks-qM5" firstAttribute="leading" secondItem="bCR-Vp-dAy" secondAttribute="leading" constant="16" id="8ud-J2-78W"/>
+                                            <constraint firstItem="g0a-zt-Vvv" firstAttribute="leading" secondItem="iVE-Jp-zu0" secondAttribute="trailing" constant="16" id="9Ex-CU-dhm"/>
                                             <constraint firstAttribute="trailing" secondItem="pxo-57-9pc" secondAttribute="trailing" constant="16" id="AMP-or-6oj"/>
                                             <constraint firstItem="qZn-zZ-ETX" firstAttribute="top" secondItem="htc-15-IWw" secondAttribute="bottom" constant="16" id="Avk-m7-MW8"/>
                                             <constraint firstItem="VfQ-cO-dnj" firstAttribute="leading" secondItem="bCR-Vp-dAy" secondAttribute="leading" constant="16" id="DPX-dH-JuC"/>
@@ -683,7 +684,7 @@
                                             <rect key="frame" x="8" y="16" width="398" height="54"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habit Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRM-vd-7mc">
-                                                    <rect key="frame" x="16" y="18.5" width="366" height="17"/>
+                                                    <rect key="frame" x="166" y="18.5" width="66.5" height="17"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -691,9 +692,8 @@
                                             </subviews>
                                             <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="vRM-vd-7mc" secondAttribute="trailing" constant="16" id="XbW-JM-k9e"/>
+                                                <constraint firstItem="vRM-vd-7mc" firstAttribute="centerX" secondItem="bFY-v3-xU2" secondAttribute="centerX" id="B35-Hu-p89"/>
                                                 <constraint firstItem="vRM-vd-7mc" firstAttribute="centerY" secondItem="bFY-v3-xU2" secondAttribute="centerY" id="i72-zy-OYx"/>
-                                                <constraint firstItem="vRM-vd-7mc" firstAttribute="leading" secondItem="bFY-v3-xU2" secondAttribute="leading" constant="16" id="ziU-bF-MGq"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -722,7 +722,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="jS1-1U-7Ob">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="jS1-1U-7Ob">
                                             <rect key="frame" x="20" y="0.0" width="374" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -813,12 +813,14 @@
                                             <constraint firstItem="AiJ-bQ-7e6" firstAttribute="top" secondItem="5Zy-Zv-oG9" secondAttribute="bottom" constant="8" id="JkY-7C-G97"/>
                                             <constraint firstItem="5Zy-Zv-oG9" firstAttribute="leading" secondItem="0WH-el-Tnd" secondAttribute="leading" constant="16" id="Liy-zV-fCs"/>
                                             <constraint firstItem="8fX-1b-gwo" firstAttribute="top" secondItem="0WH-el-Tnd" secondAttribute="top" constant="16" id="PV9-kh-X41"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jLs-5r-4si" secondAttribute="trailing" constant="20" symbolic="YES" id="TUj-aY-tr8"/>
                                             <constraint firstAttribute="trailing" secondItem="8fX-1b-gwo" secondAttribute="trailing" constant="16" id="WMp-JD-Ja1"/>
                                             <constraint firstItem="AiJ-bQ-7e6" firstAttribute="leading" secondItem="0WH-el-Tnd" secondAttribute="leading" constant="16" id="YhY-80-8K5"/>
                                             <constraint firstAttribute="trailing" secondItem="qQO-MJ-fod" secondAttribute="trailing" constant="16" id="eQ2-Sb-W2w"/>
                                             <constraint firstItem="qQO-MJ-fod" firstAttribute="leading" secondItem="0WH-el-Tnd" secondAttribute="leading" constant="16" id="fJJ-Fn-WP3"/>
                                             <constraint firstItem="8fX-1b-gwo" firstAttribute="leading" secondItem="0WH-el-Tnd" secondAttribute="leading" constant="16" id="gUV-pH-QzY"/>
                                             <constraint firstItem="jLs-5r-4si" firstAttribute="top" secondItem="1Hu-jD-mqD" secondAttribute="bottom" constant="8" id="hKi-Al-4NJ"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="1Hu-jD-mqD" secondAttribute="trailing" constant="20" symbolic="YES" id="qfe-U5-BeN"/>
                                             <constraint firstItem="1Hu-jD-mqD" firstAttribute="leading" secondItem="5Zy-Zv-oG9" secondAttribute="trailing" id="ydF-nY-ncB"/>
                                             <constraint firstItem="1Hu-jD-mqD" firstAttribute="top" secondItem="qQO-MJ-fod" secondAttribute="bottom" constant="16" id="zCX-bc-IsB"/>
                                         </constraints>
@@ -886,10 +888,10 @@
                                         </constraints>
                                     </view>
                                     <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ig-6L-Zow">
-                                        <rect key="frame" x="0.0" y="50" width="414" height="90"/>
+                                        <rect key="frame" x="0.0" y="50" width="414" height="116"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Navigate to the Habits page and click on the + button at the top right hand corner of the screen." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hza-Gh-jOT">
-                                                <rect key="frame" x="16" y="16" width="382" height="58"/>
+                                                <rect key="frame" x="16" y="16" width="382" height="84"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -904,12 +906,12 @@
                                             <constraint firstItem="hza-Gh-jOT" firstAttribute="top" secondItem="6ig-6L-Zow" secondAttribute="top" constant="16" id="MmM-yz-54c"/>
                                             <constraint firstAttribute="bottom" secondItem="hza-Gh-jOT" secondAttribute="bottom" constant="16" id="bOW-fF-Pb4"/>
                                             <constraint firstItem="hza-Gh-jOT" firstAttribute="leading" secondItem="6ig-6L-Zow" secondAttribute="leading" constant="16" id="fJ7-eU-t6z"/>
-                                            <constraint firstAttribute="height" constant="90" id="flp-ey-Bq4"/>
+                                            <constraint firstAttribute="height" constant="116" id="flp-ey-Bq4"/>
                                             <constraint firstAttribute="trailing" secondItem="hza-Gh-jOT" secondAttribute="trailing" constant="16" id="ypi-YQ-ECH"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oes-f6-oaI">
-                                        <rect key="frame" x="0.0" y="140" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="166" width="414" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to edit / delete a Habit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9T-Ie-CCa">
                                                 <rect key="frame" x="16" y="16" width="382" height="18"/>
@@ -928,10 +930,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dZZ-GG-Jdu">
-                                        <rect key="frame" x="0.0" y="190" width="414" height="86"/>
+                                        <rect key="frame" x="0.0" y="216" width="414" height="96"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Click on habit in the Habit screen to edit / delete the habit." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FQ6-Yh-nZD">
-                                                <rect key="frame" x="16" y="16" width="382" height="54"/>
+                                                <rect key="frame" x="16" y="16" width="382" height="64"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -942,13 +944,13 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="FQ6-Yh-nZD" secondAttribute="trailing" constant="16" id="IUN-9t-nd7"/>
                                             <constraint firstItem="FQ6-Yh-nZD" firstAttribute="leading" secondItem="dZZ-GG-Jdu" secondAttribute="leading" constant="16" id="hl7-fc-lbD"/>
-                                            <constraint firstAttribute="height" constant="86" id="nzK-Ue-2t7"/>
+                                            <constraint firstAttribute="height" constant="96" id="nzK-Ue-2t7"/>
                                             <constraint firstItem="FQ6-Yh-nZD" firstAttribute="top" secondItem="dZZ-GG-Jdu" secondAttribute="top" constant="16" id="qsX-Qc-WJN"/>
                                             <constraint firstAttribute="bottom" secondItem="FQ6-Yh-nZD" secondAttribute="bottom" constant="16" id="wFp-Mj-Ujx"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNM-gF-cwe">
-                                        <rect key="frame" x="0.0" y="276" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="312" width="414" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to update a habit's progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wca-j3-xMm">
                                                 <rect key="frame" x="16" y="16" width="382" height="18"/>
@@ -967,10 +969,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdF-N2-iY4">
-                                        <rect key="frame" x="0.0" y="326" width="414" height="492"/>
+                                        <rect key="frame" x="0.0" y="362" width="414" height="456"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WaA-pJ-MbT">
-                                                <rect key="frame" x="16" y="16" width="382" height="460"/>
+                                                <rect key="frame" x="16" y="16" width="382" height="424"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <string key="text">In the Habit screen, swipe left on a habit to increment a habit's count by 1 and swipe right to decrement a habit's count by 1. Note that only custom habits can be edited this way; special habits will be automatically updated by syncing with Health data.</string>
                                                 <color key="textColor" systemColor="labelColor"/>
@@ -1051,6 +1053,7 @@
                                                 <constraint firstItem="Bgf-rZ-C3d" firstAttribute="centerY" secondItem="wF1-OG-g9k" secondAttribute="centerY" id="Vdf-Vt-UXt"/>
                                                 <constraint firstItem="Iw4-6x-dSC" firstAttribute="leading" secondItem="wF1-OG-g9k" secondAttribute="leading" constant="18" id="hXr-4r-Gs9"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bgf-rZ-C3d" secondAttribute="trailing" constant="16" id="vVo-vG-14j"/>
+                                                <constraint firstItem="Bgf-rZ-C3d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Iw4-6x-dSC" secondAttribute="trailing" constant="16" id="w69-KP-iRe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1171,6 +1174,38 @@ All quotes are obtained via the API provided by ZenQuotes.io. Charts generated i
             <point key="canvasLocation" x="2775" y="-751"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="4V1-ww-jZR">
+            <size key="intrinsicContentSize" width="42.5" height="22"/>
+        </designable>
+        <designable name="4zP-3q-OR8">
+            <size key="intrinsicContentSize" width="5" height="22"/>
+        </designable>
+        <designable name="5rf-WW-qtP">
+            <size key="intrinsicContentSize" width="90" height="22"/>
+        </designable>
+        <designable name="B4u-mk-MRi">
+            <size key="intrinsicContentSize" width="59.5" height="22"/>
+        </designable>
+        <designable name="MBi-Op-oxb">
+            <size key="intrinsicContentSize" width="54.5" height="22"/>
+        </designable>
+        <designable name="VfQ-cO-dnj">
+            <size key="intrinsicContentSize" width="127.5" height="22"/>
+        </designable>
+        <designable name="YhA-qd-POS">
+            <size key="intrinsicContentSize" width="291.5" height="22"/>
+        </designable>
+        <designable name="pce-QM-ccy">
+            <size key="intrinsicContentSize" width="40" height="22"/>
+        </designable>
+        <designable name="pxo-57-9pc">
+            <size key="intrinsicContentSize" width="140" height="22"/>
+        </designable>
+        <designable name="qZn-zZ-ETX">
+            <size key="intrinsicContentSize" width="183.5" height="22"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="mos-Ie-BLl"/>
     </inferredMetricsTieBreakers>

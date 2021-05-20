@@ -36,10 +36,12 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
         super.init()
         
+        /*
         // create default habits - TO BE DELETED IN LATER MILESTONES
         if fetchAllHabits().count == 0 {
             createDefaultHabits()
         }
+        */
         
         // create habit dates if none exist
         if fetchAllHabitDates().count == 0 {
@@ -216,11 +218,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     /// - parameter startDate: the first date that the new HabitData objects should be created for
     func createHabitData(habit: Habit, startDate: Date) {
         let habitDates = fetchAllHabitDates()
-        var count = 0
         for date in habitDates {
             // create a new HabitData for the existing dates starting from the start date
             if date.date! >= startDate {
-                count += 1
                 let habitData = NSEntityDescription.insertNewObject(forEntityName: "HabitData", into: persistentContainer.viewContext) as! HabitData
                 habitData.count = 0
                 date.addToHabits(habitData)
