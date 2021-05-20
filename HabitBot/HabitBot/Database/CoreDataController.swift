@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import BackgroundTasks
 
 class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsControllerDelegate {
     
@@ -15,7 +16,10 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     var allHabitDataFetchedResultsController: NSFetchedResultsController<HabitData>?
     var allHabitDatesFetchedResultsController: NSFetchedResultsController<HabitDate>?
     var allHabitFetchedResultsController: NSFetchedResultsController<Habit>?
+    var allRemindersFetchedResultsController: NSFetchedResultsController<Reminder>?
     var childContext: NSManagedObjectContext?
+    
+    let USER_ID = "default"
     
     override init() {
         // initialise persistent container
@@ -254,6 +258,55 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         }
     }
     
+    // MARK: - Notification Settings methods
+    
+    func initialiseUserSettings(notificationsEnabled: Bool) {
+        // only create user settings if it doesn't exist in persistent storage
+        if fetchUserSettings() == nil {
+            let userSettings = NSEntityDescription.insertNewObject(forEntityName: "UserSettings", into: persistentContainer.viewContext) as! UserSettings
+            userSettings.userID = USER_ID
+            userSettings.reminderNotifications = notificationsEnabled
+            userSettings.dailyQuotes = notificationsEnabled
+            cleanup()
+        }
+    }
+    
+    func changeNotificationSettings(type: String, enabled: Bool) {
+        if let userSettings = fetchUserSettings() {
+            if type == "reminders" {
+                userSettings.reminderNotifications = enabled
+                
+                if !enabled {
+                    // remove all scheduled reminder notifications
+                    let notificationCenter = UNUserNotificationCenter.current()
+                    notificationCenter.removeAllPendingNotificationRequests()
+                } else {
+                    // rescheduled all reminder notification
+                    for reminder in fetchAllReminders() {
+                        createReminderNotification(reminder: reminder)
+                    }
+                }
+            }
+            else if type == "quotes" {
+                userSettings.dailyQuotes = enabled
+                
+                if !enabled {
+                    BGTaskScheduler.shared.cancelAllTaskRequests()
+                }
+            }
+        }
+    }
+    
+    func getNotificationSettings(type: String) -> Bool {
+        if let userSettings = fetchUserSettings() {
+            if type == "reminders" {
+                return userSettings.reminderNotifications
+            }
+            return userSettings.dailyQuotes
+        }
+        return false
+    }
+    
     // MARK: - Fetch methods
     
     /// This function fetches all HabitData from persistent storage.
@@ -357,6 +410,53 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
             let habit = try persistentContainer.viewContext.fetch(request)
             if habit.count >= 1 {
                 return habit[0]
+            }
+        } catch {
+            print("Fetch Request Failed: \(error)")
+        }
+        return nil
+    }
+    
+    /// This function fetches all Reminders from persistent storage.
+    /// - returns: an array containing all `Reminder` objects in the database.
+    func fetchAllReminders() -> [Reminder] {
+        if allHabitFetchedResultsController == nil {
+            // make a request to fetch all reminders that are sorted in ascending order by their time
+            let request: NSFetchRequest<Reminder> = Reminder.fetchRequest()
+            let nameSortDescriptor = NSSortDescriptor(key: "startTime", ascending: true)
+            request.sortDescriptors = [nameSortDescriptor]
+            
+            // initialise fetched results controller
+            allRemindersFetchedResultsController = NSFetchedResultsController<Reminder>(fetchRequest: request, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+            
+            // set this object to be the results delegate
+            allRemindersFetchedResultsController?.delegate = self
+            
+            // make the fetch
+            do {
+                try allRemindersFetchedResultsController?.performFetch()
+            } catch {
+                print("Fetch Request Failed: \(error)")
+            }
+        }
+        
+        // return the fetched reminders
+        if let reminders = allRemindersFetchedResultsController?.fetchedObjects {
+            return reminders
+        }
+        return [Reminder]()
+    }
+    
+    /// This function fetches a user's settings from persistent storage.
+    func fetchUserSettings() -> UserSettings? {
+        let request: NSFetchRequest<UserSettings> = UserSettings.fetchRequest()
+        request.predicate = NSPredicate(format: "userID == %@", USER_ID)
+        
+        // make the fetch
+        do {
+            let userSettings = try persistentContainer.viewContext.fetch(request)
+            if userSettings.count >= 1 {
+                return userSettings[0]
             }
         } catch {
             print("Fetch Request Failed: \(error)")

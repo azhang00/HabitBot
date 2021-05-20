@@ -12,6 +12,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var settingsTableView: UITableView!
     
+    weak var databaseController: DatabaseProtocol?
+    
     let SECTION_REMINDERS = 0
     let SECTION_INFO = 1
     let CELL_NOTIF = "notificationCell"
@@ -19,6 +21,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        databaseController = appDelegate?.databaseController
         
         self.settingsTableView.delegate = self
         self.settingsTableView.dataSource = self
@@ -33,9 +38,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
             case SECTION_REMINDERS:
-                return 1
+                return 2
             case SECTION_INFO:
-                return 1
+                return 2
             default:
                 return 0
        }
@@ -56,18 +61,31 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if indexPath.section == SECTION_REMINDERS {
             let reminderCell = tableView.dequeueReusableCell(withIdentifier: CELL_NOTIF, for: indexPath) as! NotificationTableViewCell
             reminderCell.view = self
-            reminderCell.notificationLabel?.text = "Push notifications"
+            
+            if indexPath.row == 0 {
+                reminderCell.notificationLabel?.text = "Habit reminder notifications"
+                reminderCell.notificationType = "reminders"
+            } else if indexPath.row == 1 {
+                reminderCell.notificationLabel?.text = "Daily motivational quotes"
+                reminderCell.notificationType = "quotes"
+            }
             
             // check whether notifications are turned on and toggle the switch accordingly
             let notifCenter = UNUserNotificationCenter.current()
             notifCenter.getNotificationSettings(completionHandler: { permission in
                 if permission.authorizationStatus == .authorized {
                     DispatchQueue.main.async {
-                        reminderCell.notificationSwitch.isOn = true
+                        if indexPath.row == 0 {
+                            reminderCell.notificationSwitch.isOn = self.databaseController!.getNotificationSettings(type: "reminders")
+                        } else {
+                            reminderCell.notificationSwitch.isOn = self.databaseController!.getNotificationSettings(type: "quotes")
+                        }
+                        reminderCell.systemNotificationsEnabled = true
                     }
                 } else {
                     DispatchQueue.main.async {
                         reminderCell.notificationSwitch.isOn = false
+                        reminderCell.systemNotificationsEnabled = false
                     }
                 }
             })
@@ -75,7 +93,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         
         let infoCell = tableView.dequeueReusableCell(withIdentifier: CELL_INFO, for: indexPath)
-        infoCell.textLabel?.text = "How to use the application"
+        if indexPath.row == 0 {
+            infoCell.textLabel?.text = "How to use the application"
+        } else if indexPath.row == 1 {
+            infoCell.textLabel?.text = "About the app"
+        }
         return infoCell
     }
 

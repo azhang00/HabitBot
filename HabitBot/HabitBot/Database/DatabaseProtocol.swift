@@ -40,6 +40,20 @@ protocol DatabaseListener: AnyObject {
 }
 
 protocol DatabaseProtocol: AnyObject {
+    /// This function initialises the user settings
+    /// - parameter notificationsEnabled: true if users have enabled notification settings; false otherwise
+    func initialiseUserSettings(notificationsEnabled: Bool)
+    
+    /// This function changes the user notification settings.
+    /// - parameter type: type of notification setting ('reminders' or 'quotes')
+    /// - parameter enabled: `Boolean` value for whether the notification should be enabled or not
+    func changeNotificationSettings(type: String, enabled: Bool)
+    
+    /// This function returns whether the specified type of notification is enable or not.
+    /// - parameter type: type of notification setting ('reminders' or 'quotes')
+    /// - returns: true if the notification type is enabled; false otherwise
+    func getNotificationSettings(type: String) -> Bool
+    
     /// This function creates a new habit.
     /// - parameter name: name of the new habit
     /// - parameter type: type of the new habit - i.e. custom or special

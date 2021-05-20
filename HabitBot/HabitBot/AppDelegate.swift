@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var databaseController: DatabaseProtocol?
     var healthStore: HKHealthStore?
+    
+    let TASK_IDENTIFIER = "HabitBot.DailyQuotes"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         databaseController = CoreDataController()
@@ -27,10 +29,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let _ = error {
                 print("Error in getting notification permissions.")
             }
+            
             if !granted {
                 print("User has not allowed notifications.")
+                self.databaseController?.initialiseUserSettings(notificationsEnabled: false)
+            } else {
+                self.databaseController?.initialiseUserSettings(notificationsEnabled: true)
             }
         }
+        
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {
+            settings in
+            if settings.authorizationStatus == .authorized {
+                // register daily quotes notification task
+                BGTaskScheduler.shared.register(forTaskWithIdentifier: self.TASK_IDENTIFIER, using: nil) { task in
+                    self.handleQuoteNotificationBGTask(task: task as! BGAppRefreshTask)
+                }
+                //self.scheduleQuoteNotification()
+                self.sendDailyQuoteNotification()
+            }
+        })
         
         // request healthkit permissions
         if HKHealthStore.isHealthDataAvailable() {
@@ -42,8 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if !success {
                     print("Did not get HealthKit access permissions.")
                 } else {
-                    print("Obtained HealthKit permissions.")
-                    
                     // get updated health data
                     self.updateHealthData(types: allTypes)
                     // set up observer for health data so the app can get background updates
@@ -245,6 +261,105 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             break
         }
         completionHandler()
+    }
+    
+    // MARK: Daily Motivational Quotes Background Task
+    
+    /// This function schedules a daily quote notification background task.
+    func scheduleQuoteNotification() {
+        // check that the user has enabled quote notifications
+        if databaseController!.getNotificationSettings(type: "quotes") {
+            let request = BGAppRefreshTaskRequest(identifier: TASK_IDENTIFIER)
+            var taskExists = false
+            
+            // check if task already exists
+            BGTaskScheduler.shared.getPendingTaskRequests(completionHandler: {
+                BGTaskRequests in
+                for BGTaskRequest in BGTaskRequests {
+                    
+                    print(BGTaskRequest.identifier)
+                    
+                    if BGTaskRequest.identifier == self.TASK_IDENTIFIER {
+                        taskExists = true
+                    }
+                }
+            })
+        
+            if !taskExists {
+                // schedule next task for 24 hours from now
+                request.earliestBeginDate = Date(timeIntervalSinceNow: 60 * 60 * 24)
+                do {
+                    try BGTaskScheduler.shared.submit(request)
+                } catch {
+                    print("Could not schedule daily motivational quote notification: \(error)")
+                }
+            }
+        }
+    }
+    
+    /// This function send the quote notification to send and schedules the next
+    /// quote notification background task.
+    func handleQuoteNotificationBGTask(task: BGAppRefreshTask) {
+        // just checking how many background tasks there are
+        BGTaskScheduler.shared.getPendingTaskRequests(completionHandler: {
+            BGTaskRequests in
+            print(BGTaskRequests.count)
+            for BGTask in BGTaskRequests {
+                print(BGTask.identifier)
+            }
+        })
+        
+        // schedule the next quote notification
+        scheduleQuoteNotification()
+        
+        // send notification
+        sendDailyQuoteNotification()
+    }
+    
+    /// This functions retrieves a quote from an API and sends it in a push notification.
+    func sendDailyQuoteNotification() {
+        if databaseController!.getNotificationSettings(type: "quotes") {
+            // get quote from API
+            guard let url = URL(string: "https://zenquotes.io/api/today") else {
+                print("URL not valid")
+                return
+            }
+            
+            // make a request to the API to obtain the daily quote
+            let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                // print error if any
+                if let error = error {
+                    print(error)
+                    return
+                }
+                
+                if let data = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        let allQuotes = try decoder.decode([QuoteData].self, from: data)
+                        let quote = allQuotes[0].quote
+                        let author = allQuotes[0].author ?? "Unknown"
+                        
+                        // send notification
+                        let content = UNMutableNotificationContent()
+                        content.title = "Daily Quote"
+                        content.body = "\(quote) — \(author)"
+                        content.sound = UNNotificationSound.default
+                        
+                        // show notification in 5 seconds
+                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+                        
+                        let request = UNNotificationRequest(identifier: "DAILY QUOTE", content: content, trigger: trigger)
+                        UNUserNotificationCenter.current().add(request)
+                    } catch let err {
+                        print(err)
+                    }
+
+                }
+            }
+            
+            task.resume()
+        }
     }
 }
 
