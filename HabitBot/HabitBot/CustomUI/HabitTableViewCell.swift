@@ -12,6 +12,7 @@ class HabitTableViewCell: UITableViewCell {
     @IBOutlet weak var habitBackgroundView: UIView!
     @IBOutlet weak var habitTitle: UILabel!
     @IBOutlet weak var habitCount: UILabel!
+    @IBOutlet weak var habitCheckMark: UIButton!
     
     var originalCenter = CGPoint()
     var habitData: HabitData?
@@ -23,6 +24,7 @@ class HabitTableViewCell: UITableViewCell {
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
+        
         initialise()
     }
     

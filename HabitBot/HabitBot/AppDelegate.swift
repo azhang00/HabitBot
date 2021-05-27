@@ -298,16 +298,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     /// This function send the quote notification to send and schedules the next
     /// quote notification background task.
-    func handleQuoteNotificationBGTask(task: BGAppRefreshTask) {
-        // just checking how many background tasks there are
-        BGTaskScheduler.shared.getPendingTaskRequests(completionHandler: {
-            BGTaskRequests in
-            print(BGTaskRequests.count)
-            for BGTask in BGTaskRequests {
-                print(BGTask.identifier)
-            }
-        })
-        
+    func handleQuoteNotificationBGTask(task: BGAppRefreshTask) {        
         // schedule the next quote notification
         scheduleQuoteNotification()
         

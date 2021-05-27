@@ -116,7 +116,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         habit.reminder = reminder
         
         // create recurring system notification
-        createReminderNotification(reminder: reminder)
+        if getNotificationSettings(type: "reminders") {
+            createReminderNotification(reminder: reminder)
+        }
     }
     
     func deleteReminder(habit: Habit) {

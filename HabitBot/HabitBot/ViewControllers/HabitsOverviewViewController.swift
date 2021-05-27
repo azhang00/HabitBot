@@ -126,12 +126,29 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             habitCell.habitTitle.text = currentHabitData[indexPath.row].habit!.name
             if currentHabitData[indexPath.row].count >= currentHabitData[indexPath.row].habit!.frequency {
                 habitCell.habitCount.text = "Done"
+                habitCell.habitCheckMark.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+    
+                habitCell.habitTitle.textColor = UIColor.white
+                habitCell.habitCount.textColor = UIColor.white
+                
+                // set the cell border and checkmark colour
+                habitCell.habitBackgroundView.layer.borderWidth = 0
+                habitCell.habitBackgroundView.backgroundColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)
+                habitCell.habitCheckMark.tintColor = UIColor.white
             } else {
                 habitCell.habitCount.text = "\(currentHabitData[indexPath.row].count) / \(currentHabitData[indexPath.row].habit!.frequency) \(currentHabitData[indexPath.row].habit!.freqDescription!)"
+                habitCell.habitCheckMark.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
+                
+                habitCell.habitTitle.textColor = UIColor.label
+                habitCell.habitCount.textColor = UIColor.secondaryLabel
+                
+                // set the cell border and checkmark colour
+                habitCell.habitBackgroundView.layer.borderWidth = 2
+                habitCell.habitBackgroundView.layer.borderColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)?.cgColor
+                habitCell.habitBackgroundView.backgroundColor = .clear
+                habitCell.habitCheckMark.tintColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)
             }
             
-            // set the cell background colour to match the chosen colour for the habit
-            habitCell.habitBackgroundView.backgroundColor = UIColor(named: currentHabitData[indexPath.row].habit!.colour!)
             habitCell.habitData = currentHabitData[indexPath.row]
             habitCell.tableView = tableView
             return habitCell
@@ -140,7 +157,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         // info cell either contains instructions for adding a new habit or updating a habit
         let infoCell = tableView.dequeueReusableCell(withIdentifier: CELL_INFO, for: indexPath)
         if currentHabitData.count > 0 {
-            infoCell.textLabel?.text = "Instructions: Swipe left / right to increment / decrement habit count, and tap on a habit to edit the habit."
+            infoCell.textLabel?.text = "Hint: Swipe left / right to increment / decrement habit count, and tap on a habit to edit the habit."
         } else {
             infoCell.textLabel?.text = "No habits set. Click + to add a habit."
         }

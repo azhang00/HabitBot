@@ -124,6 +124,12 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
         barChart.xAxis.valueFormatter = dateAxisFormatter
         barChart.xAxis.labelPosition = Charts.XAxis.LabelPosition.bottom
         
+        // set label count to 2 if the current week is the first week of data for a
+        // weekly habit
+        if (habit!.frequencyDuration == "weekly" && entries.count == 2) {
+            barChart.xAxis.labelCount = 2
+        }
+        
         return entries
     }
     
@@ -198,8 +204,9 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
     // MARK: - DatabaseListener methods
     
     func onHabitDataForADateChange(change: DatabaseChange, habitData: [HabitData]) {
-        // update the bar chart data
+        // update the bar chart data and streaks
         setBarChartData()
+        calculateStreaks()
     }
     
     func onHabitDateChange(change: DatabaseChange, habitDate: [HabitDate]) {

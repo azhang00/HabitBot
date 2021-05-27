@@ -61,7 +61,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     var habitPicker = UIPickerView()
     var timePicker = UIDatePicker()
     
-    let colours = ["RedColour", "OrangeColour", "YellowColour", "SandColour", "LightGreenColour", "DarkGreenColour", "LightBlueColour", "DarkBlueColour", "PurpleColour", "PinkColour"]
+    let colours = ["RedColour", "OrangeColour", "YellowColour", "LightGreenColour", "DarkGreenColour", "LightBlueColour", "DarkBlueColour", "PurpleColour", "PinkColour"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

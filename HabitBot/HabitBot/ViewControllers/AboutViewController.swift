@@ -26,7 +26,7 @@ class AboutViewController: UIViewController {
         let textFieldRange = NSMakeRange(453, 16)
 
         // insert links into the text
-        attributedString.setAttributes([.font: UIFont.preferredFont(forTextStyle: .body)], range: NSMakeRange(0, attributedString.length))
+        attributedString.setAttributes([.font: UIFont.preferredFont(forTextStyle: .body), .foregroundColor: UIColor.label], range: NSMakeRange(0, attributedString.length))
         
         attributedString.setAttributes([.link: apiURL], range: apiRange)
         attributedString.setAttributes([.link: chartsURL], range: chartsRange)
@@ -46,7 +46,7 @@ class AboutViewController: UIViewController {
 
         // set link format
         aboutTextView.linkTextAttributes = [
-            .foregroundColor: UIColor(named: "PurpleColour")!,
+            .foregroundColor: UIColor(named: "RedColour")!,
             .underlineStyle: NSUnderlineStyle.single.rawValue,
         ]
     }
