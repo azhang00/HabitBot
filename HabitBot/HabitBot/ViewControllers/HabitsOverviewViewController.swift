@@ -124,13 +124,12 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
             }
-            
-            date.date = currentDate
             self.habitsTableView.reloadData()
         } else {
             // create more HabitDates in Core Data if no more future dates exist
             databaseController?.createOneMonthOfHabitDates(startDate: currentDate)
         }
+        date.date = currentDate
     }
     
     // MARK: - TableView functions
