@@ -74,7 +74,7 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
         // set axis
         barChart.setVisibleXRangeMaximum(7.0)
         barChart.leftAxis.axisMinimum = 0.0
-        barChart.leftAxis.axisMaximum = Double(habit!.frequency + 1)
+        barChart.leftAxis.axisMaximum = Double(habit!.frequency) * 1.1
         barChart.leftAxis.granularityEnabled = true
         barChart.leftAxis.granularity = 1.0
         
