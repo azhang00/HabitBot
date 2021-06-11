@@ -8,7 +8,7 @@
 import UIKit
 import TextFieldEffects
 
-class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource {
+class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
     
     weak var databaseController: DatabaseProtocol?
     
@@ -19,25 +19,25 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     var selectedColourIndex = 0
 
     @IBOutlet weak var habitNameLabel: UILabel!
-    @IBOutlet weak var habitName: IsaoTextField!
+    @IBOutlet weak var habitName: UITextField!
     @IBOutlet weak var habitType: UISegmentedControl!
     @IBOutlet weak var specialHabitTitle: UILabel!
-    @IBOutlet weak var specialHabit: IsaoTextField!
+    @IBOutlet weak var specialHabit: UITextField!
     
     @IBOutlet weak var frequencyDuration: UISegmentedControl!
     @IBOutlet weak var frequencyLabel: UILabel!
-    @IBOutlet weak var frequencyCount: IsaoTextField!
-    @IBOutlet weak var frequencyDescription: IsaoTextField!
+    @IBOutlet weak var frequencyCount: UITextField!
+    @IBOutlet weak var frequencyDescription: UITextField!
     
     @IBOutlet weak var colourCollectionView: UICollectionView!
     
     @IBOutlet weak var reminderView: UIView!
-    @IBOutlet weak var reminderDescription: IsaoTextField!
-    @IBOutlet weak var completedTaskMessage: IsaoTextField!
-    @IBOutlet weak var incompleteTaskMessage: IsaoTextField!
-    @IBOutlet weak var notificationCount: IsaoTextField!
-    @IBOutlet weak var notificationFrequency: IsaoTextField!
-    @IBOutlet weak var notificationStartTime: IsaoTextField!
+    @IBOutlet weak var reminderDescription: UITextField!
+    @IBOutlet weak var completedTaskMessage: UITextField!
+    @IBOutlet weak var incompleteTaskMessage: UITextField!
+    @IBOutlet weak var notificationCount: UITextField!
+    @IBOutlet weak var notificationFrequency: UITextField!
+    @IBOutlet weak var notificationStartTime: UITextField!
     @IBOutlet weak var deleteHabitButton: UIButton!
     @IBOutlet weak var reminderSwitch: UISwitch!
     
@@ -136,6 +136,21 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         specialHabit.inputView = habitPicker
         
         setTimePicker()
+        setTextFieldDelegate()
+    }
+    
+    /// This function sets up the delegate for all the text fields.
+    func setTextFieldDelegate() {
+        habitName.delegate = self
+        specialHabit.delegate = self
+        frequencyCount.delegate = self
+        frequencyDescription.delegate = self
+        reminderDescription.delegate = self
+        completedTaskMessage.delegate = self
+        incompleteTaskMessage.delegate = self
+        notificationCount.delegate = self
+        notificationFrequency.delegate = self
+        notificationStartTime.delegate = self
     }
     
     /// This function sets the time picker for the notification start time field.
@@ -167,6 +182,13 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     /// This function handles the action of users clicking on the 'Cancel' button on the time picker.
     @objc func cancelTimePicker() {
         self.view.endEditing(true)
+    }
+    
+    /// This function hides the keyboard once users have finished typing in a text field.
+    /// - parameter textField: text field that has been edited
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - PickerView methods
@@ -239,6 +261,13 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
             specialHabitTitle.isHidden = false
             habitName.isHidden = true
             habitNameLabel.isHidden = true
+        }
+        
+        // make sure frequency labels match the frequency duration selected
+        if frequencyDuration.selectedSegmentIndex == 0 {
+            frequencyLabel.text = "How often each day?"
+        } else {
+            frequencyLabel.text = "How often each week?"
         }
     }
     

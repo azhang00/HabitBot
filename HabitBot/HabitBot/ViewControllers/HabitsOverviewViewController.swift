@@ -97,8 +97,6 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             return $0.habit!.name! < $1.habit!.name!
         }
         self.habitsTableView.reloadData()
-        
-        date.endEditing(true)
     }
     
     /// This function handles the action of displaying the previous day's habit data. It will display an alert if the current date is the initial date to contain any data.
