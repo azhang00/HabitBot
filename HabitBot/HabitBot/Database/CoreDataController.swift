@@ -266,13 +266,9 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
                 userSettings.reminderNotifications = enabled
                 
                 if !enabled {
-                    // remove all scheduled reminder notifications
-                    let notificationCenter = UNUserNotificationCenter.current()
-                    notificationCenter.removeAllPendingNotificationRequests()
-                } else {
-                    // rescheduled all reminder notification
-                    for reminder in fetchAllReminders() {
-                        createReminderNotification(reminder: reminder)
+                    // delete all existing reminders
+                    for habit in fetchAllHabits() {
+                        deleteReminder(habit: habit)
                     }
                 }
             }

@@ -61,9 +61,9 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
         setBarChartData()
         
         // customise grid line settings
+        barChart.rightAxis.enabled = false
         barChart.xAxis.drawGridLinesEnabled = false
         barChart.leftAxis.drawGridLinesEnabled = false
-        barChart.rightAxis.drawLabelsEnabled = false
         
         // customise legend settings
         barChart.legend.enabled = false
@@ -77,6 +77,14 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
         barChart.leftAxis.axisMaximum = Double(habit!.frequency + 1)
         barChart.leftAxis.granularityEnabled = true
         barChart.leftAxis.granularity = 1.0
+        
+        // draw horizontal line for habit goal
+        var goalLine = ChartLimitLine()
+        goalLine = ChartLimitLine(limit: Double(habit!.frequency), label: "Goal")
+        goalLine.lineColor = NSUIColor(named: habit!.colour!)!
+        goalLine.valueTextColor = NSUIColor(named: habit!.colour!)!
+        goalLine.lineDashLengths = [3.0]
+        barChart.leftAxis.addLimitLine(goalLine)
     }
     
     /// This function sets the data for the bar chart.
@@ -88,6 +96,14 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
         set.highlightEnabled = false
         
         let data = BarChartData(dataSet: set)
+        
+        // remove decimal places from dataset labels
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.maximumFractionDigits = 0
+        formatter.multiplier = 1.0
+        data.setValueFormatter(DefaultValueFormatter(formatter: formatter))
+        
         barChart.data = data
     }
     
