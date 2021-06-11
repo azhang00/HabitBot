@@ -288,16 +288,36 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
     /// - parameter sender: `UISwitch` that was toggled
     @IBAction func toggleReminder(_ sender: UISwitch) {
         if sender.isOn {
-            reminderView.isHidden = false
-            
-            // there's a bug with IsaoTextField where the underline and placeholder
-            // text doesn't appear so I've redrawn the display
-            reminderDescription.setNeedsDisplay()
-            completedTaskMessage.setNeedsDisplay()
-            incompleteTaskMessage.setNeedsDisplay()
-            notificationCount.setNeedsDisplay()
-            notificationFrequency.setNeedsDisplay()
-            notificationStartTime.setNeedsDisplay()
+            // check notification permissions
+            let notifCenter = UNUserNotificationCenter.current()
+            notifCenter.getNotificationSettings(completionHandler: { [self] permission in
+                // check if user has allowed notifications for the app
+                if !(permission.authorizationStatus == .authorized) {
+                    DispatchQueue.main.async {
+                        displayErrorMessage(title: "Reminder Notifications not enabled", message: "Reminder notifications must be enabled to schedule reminders.")
+                        sender.setOn(false, animated: true)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        // check app-level reminder notification settings
+                        if (!(databaseController?.getNotificationSettings(type: "reminders"))!) {
+                            displayErrorMessage(title: "Reminder Notifications not enabled", message: "Reminder notifications must be enabled to schedule reminders.")
+                            sender.setOn(false, animated: true)
+                        } else {
+                            reminderView.isHidden = false
+                            
+                            // there's a bug with IsaoTextField where the underline and placeholder
+                            // text doesn't appear so I've redrawn the display
+                            reminderDescription.setNeedsDisplay()
+                            completedTaskMessage.setNeedsDisplay()
+                            incompleteTaskMessage.setNeedsDisplay()
+                            notificationCount.setNeedsDisplay()
+                            notificationFrequency.setNeedsDisplay()
+                            notificationStartTime.setNeedsDisplay()
+                        }
+                    }
+                }
+            })
         } else {
             reminderView.isHidden = true
         }
