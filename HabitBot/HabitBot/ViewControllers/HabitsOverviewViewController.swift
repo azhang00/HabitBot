@@ -11,7 +11,7 @@ import Foundation
 class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DatabaseListener {
 
     @IBOutlet weak var habitsTableView: UITableView!
-    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var date: UIDatePicker!
     
     let SECTION_HABIT = 0
     let SECTION_INFO = 1
@@ -25,7 +25,6 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
     var habitDataIndex = 0
     var currentHabitData: [HabitData] = []
     var allHabitDates: [HabitDate] = []
-    let formatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +33,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
         self.habitsTableView.delegate = self
         self.habitsTableView.dataSource = self
         
-        formatter.dateFormat = "dd MMM yyyy"
-        date.text = formatter.string(from: currentDate)
+        date.date = currentDate
         
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         databaseController = appDelegate?.databaseController
@@ -61,11 +59,46 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
                 return $0.habit!.name! < $1.habit!.name!
             }
         }
+        
+        // set up datepicker
+        setDatePicker()
+        setDatePickerDates()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         databaseController?.removeListener(listener: self)
+    }
+    
+    /// This function configures the date picker selection action.
+    func setDatePicker() {
+        date.addTarget(self, action: #selector(selectDate), for: .valueChanged)
+    }
+    
+    /// This function sets the minimum and maximum dates that can be selected.
+    func setDatePickerDates() {
+        date.minimumDate = allHabitDates[0].date!
+        date.maximumDate = allHabitDates[allHabitDates.count - 1].date!
+    }
+    
+    /// This function handles the action of users selecting a date in the date picker.
+    @objc func selectDate() {
+        let originalDate = currentDate
+        currentDate = date.date.dateOnly()
+        
+        // calculate how the number of days between the selected date and the original date
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.day], from: originalDate, to: currentDate)
+        let daysDifference = components.day!
+        habitDataIndex = habitDataIndex + daysDifference
+        
+        // get the habit data for the selected day
+        currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
+            return $0.habit!.name! < $1.habit!.name!
+        }
+        self.habitsTableView.reloadData()
+        
+        date.endEditing(true)
     }
     
     /// This function handles the action of displaying the previous day's habit data. It will display an alert if the current date is the initial date to contain any data.
@@ -79,9 +112,9 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
             }
-            date.text = formatter.string(from: currentDate)
             self.habitsTableView.reloadData()
         }
+        date.date = currentDate
     }
     
     /// This function handles the action of displaying the next day's habit data.
@@ -93,7 +126,8 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             currentHabitData = Array(allHabitDates[habitDataIndex].habits!).sorted {
                 return $0.habit!.name! < $1.habit!.name!
             }
-            date.text = formatter.string(from: currentDate)
+            
+            date.date = currentDate
             self.habitsTableView.reloadData()
         } else {
             // create more HabitDates in Core Data if no more future dates exist
@@ -182,6 +216,7 @@ class HabitsOverviewViewController: UIViewController, UITableViewDelegate, UITab
             currentHabitData = []
             habitDataIndex = 0
         }
+        setDatePickerDates()
         self.habitsTableView.reloadData()
     }
     

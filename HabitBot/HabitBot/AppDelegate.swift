@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.handleQuoteNotificationBGTask(task: task as! BGAppRefreshTask)
                 }
                 self.scheduleQuoteNotification()
+                // self.sendDailyQuoteNotification()
             }
         })
         

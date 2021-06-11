@@ -36,13 +36,6 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
         
         super.init()
         
-        /*
-        // create default habits - TO BE DELETED IN LATER MILESTONES
-        if fetchAllHabits().count == 0 {
-            createDefaultHabits()
-        }
-        */
-        
         // create habit dates if none exist
         if fetchAllHabitDates().count == 0 {
             createOneMonthOfHabitDates(startDate: Date().dateOnly())
@@ -51,12 +44,6 @@ class CoreDataController: NSObject, DatabaseProtocol, NSFetchedResultsController
     }
     
     // MARK: - Habit methods
-    
-    /// This function creates default habits.
-    func createDefaultHabits() {
-        let _ = createHabit(name: "Drink Water", type: "custom", frequencyDuration: "daily", frequency: 8, freqDescription: "Cups", colour: "DarkBlueColour")
-        let _ = createHabit(name: "Steps", type: "special", frequencyDuration: "daily", frequency: 10000, freqDescription: "Steps", colour: "DarkGreenColour")
-    }
     
     func createHabit(name: String, type: String, frequencyDuration: String, frequency: Int64, freqDescription: String, colour: String) -> Habit {
         let habit = NSEntityDescription.insertNewObject(forEntityName: "Habit", into: persistentContainer.viewContext) as! Habit

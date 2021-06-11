@@ -19,17 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Li3-1v-Rgp">
-                                <rect key="frame" x="82" y="104" width="250" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="UWX-c7-nAX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNF-PN-5dt">
-                                <rect key="frame" x="50.5" y="110" width="15" height="22"/>
+                                <rect key="frame" x="50.5" y="110" width="14.5" height="22"/>
                                 <state key="normal">
                                     <imageReference key="image" image="chevron.left" catalog="system" symbolScale="large"/>
                                 </state>
@@ -38,7 +29,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="r2j-Dk-xWk">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="659"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="habitCell" id="nrI-Qy-cAY" customClass="HabitTableViewCell" customModule="HabitBot" customModuleProvider="target">
@@ -124,7 +115,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUM-rh-ZkI">
-                                <rect key="frame" x="348.5" y="110" width="15" height="22"/>
+                                <rect key="frame" x="349" y="110" width="14.5" height="22"/>
                                 <state key="normal">
                                     <imageReference key="image" image="chevron.right" catalog="system" symbolScale="large"/>
                                 </state>
@@ -132,20 +123,29 @@
                                     <action selector="goAheadOneDay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sik-au-yoz"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="tH3-wR-Mdk">
+                                <rect key="frame" x="142" y="104" width="130" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="yDg-tv-4cv"/>
+                                </constraints>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="tH3-wR-Mdk" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Ly-qa-WZK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="r2j-Dk-xWk" secondAttribute="trailing" id="2XS-tJ-5To"/>
+                            <constraint firstItem="tH3-wR-Mdk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="9c0-Ta-bJy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="r2j-Dk-xWk" secondAttribute="bottom" id="Bqm-4D-1Zg"/>
-                            <constraint firstItem="Li3-1v-Rgp" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="R85-rd-PWa"/>
                             <constraint firstItem="r2j-Dk-xWk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TBp-gi-OdY"/>
-                            <constraint firstItem="Li3-1v-Rgp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="c28-i1-mGD"/>
-                            <constraint firstItem="SUM-rh-ZkI" firstAttribute="leading" secondItem="Li3-1v-Rgp" secondAttribute="trailing" constant="16.5" id="f6V-Sf-gPW"/>
+                            <constraint firstItem="tH3-wR-Mdk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LNF-PN-5dt" secondAttribute="trailing" constant="16.5" id="a2J-9Y-MKG"/>
+                            <constraint firstItem="SUM-rh-ZkI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tH3-wR-Mdk" secondAttribute="trailing" constant="16.5" id="brV-qw-IKa"/>
+                            <constraint firstItem="tH3-wR-Mdk" firstAttribute="centerY" secondItem="SUM-rh-ZkI" secondAttribute="centerY" id="lpf-jw-XSx"/>
                             <constraint firstItem="SUM-rh-ZkI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="sRC-p7-w6n"/>
+                            <constraint firstItem="LNF-PN-5dt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50.5" id="vrY-hJ-wiP"/>
+                            <constraint firstItem="r2j-Dk-xWk" firstAttribute="top" secondItem="tH3-wR-Mdk" secondAttribute="bottom" constant="16" id="wD7-4C-gbz"/>
                             <constraint firstItem="LNF-PN-5dt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="xjA-4U-01h"/>
-                            <constraint firstItem="Li3-1v-Rgp" firstAttribute="leading" secondItem="LNF-PN-5dt" secondAttribute="trailing" constant="16.5" id="yKY-00-C4k"/>
-                            <constraint firstItem="r2j-Dk-xWk" firstAttribute="firstBaseline" secondItem="Li3-1v-Rgp" secondAttribute="baseline" constant="16" id="z04-4j-S0U"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SUM-rh-ZkI" secondAttribute="trailing" constant="50.5" id="zq9-WG-f7q"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Habits" id="Htw-WG-Ovp">
@@ -161,7 +161,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="date" destination="Li3-1v-Rgp" id="R3W-Kc-r3R"/>
+                        <outlet property="date" destination="tH3-wR-Mdk" id="4qY-NN-XnW"/>
                         <outlet property="habitsTableView" destination="r2j-Dk-xWk" id="4PR-9P-4fT"/>
                     </connections>
                 </viewController>
@@ -1250,7 +1250,7 @@ All quotes are obtained via the API provided by ZenQuotes.io. Charts generated i
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightGrey">
-            <color red="0.8981865644" green="0.90961152320000005" blue="0.9215709567" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.89800000190734863" green="0.9100000262260437" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
