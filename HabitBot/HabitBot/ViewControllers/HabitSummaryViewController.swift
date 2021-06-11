@@ -117,6 +117,12 @@ class HabitSummaryViewController: UIViewController, ChartViewDelegate, DatabaseL
             $0.date?.date!.compare(($1.date?.date)!) == .orderedAscending
         })
         
+        // if there's no habit data (i.e. habit is deleted), navigate back to the previous view
+        if allHabitData.count == 0 {
+            navigationController?.popViewController(animated: true)
+            return []
+        }
+        
         var i = 0
         for habitData in allHabitData {
             if habitData.habit?.frequencyDuration == "weekly" && i % 7 == 0 {
