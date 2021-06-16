@@ -1198,38 +1198,6 @@ All quotes are obtained via the API provided by ZenQuotes.io. Charts generated i
             <point key="canvasLocation" x="2775" y="-751"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="4V1-ww-jZR">
-            <size key="intrinsicContentSize" width="42.5" height="22"/>
-        </designable>
-        <designable name="4zP-3q-OR8">
-            <size key="intrinsicContentSize" width="5" height="22"/>
-        </designable>
-        <designable name="5rf-WW-qtP">
-            <size key="intrinsicContentSize" width="90" height="22"/>
-        </designable>
-        <designable name="B4u-mk-MRi">
-            <size key="intrinsicContentSize" width="59.5" height="22"/>
-        </designable>
-        <designable name="MBi-Op-oxb">
-            <size key="intrinsicContentSize" width="54.5" height="22"/>
-        </designable>
-        <designable name="VfQ-cO-dnj">
-            <size key="intrinsicContentSize" width="127.5" height="22"/>
-        </designable>
-        <designable name="YhA-qd-POS">
-            <size key="intrinsicContentSize" width="291.5" height="22"/>
-        </designable>
-        <designable name="pce-QM-ccy">
-            <size key="intrinsicContentSize" width="40" height="22"/>
-        </designable>
-        <designable name="pxo-57-9pc">
-            <size key="intrinsicContentSize" width="140" height="22"/>
-        </designable>
-        <designable name="qZn-zZ-ETX">
-            <size key="intrinsicContentSize" width="183.5" height="22"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="mos-Ie-BLl"/>
     </inferredMetricsTieBreakers>

@@ -50,7 +50,7 @@ class AddOrEditHabitViewController: UIViewController, UIPickerViewDelegate, UIPi
         [
             "habitTitle": "Distance Travelled",
             "frequencyLabel": "Distance goal:",
-            "frequencyDesc": "km"
+            "frequencyDesc": "m"
         ],
         [
             "habitTitle": "Sleep Duration",
